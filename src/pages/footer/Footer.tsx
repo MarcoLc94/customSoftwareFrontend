@@ -5,7 +5,7 @@ const Footer = () => {
     <footer className="footer" id="contact-section">
       <div className="footer-content">
         <div className="footer-section">
-          <h3 className="footer-title">CustomSoft</h3>
+          <h3 className="footer-title">QustomSoft</h3>
           <p className="footer-text">
             Desarrollo de software a medida que transforma procesos complejos en soluciones simples y eficientes.
           </p>

@@ -32,7 +32,7 @@ const Navbar = () => {
       <div className="navbar-logo">
         <Link to="/">
           <span className={`logo-text ${scrolled ? "scrolled-text" : ""}`}>
-            CustomSoft
+            QustomSoft
           </span>
         </Link>
       </div>
