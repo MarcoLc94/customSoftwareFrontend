@@ -1,30 +1,63 @@
+import { useState, useEffect } from "react";
 import "./Video.css";
-// import MuxPlayer from "@mux/mux-player-react"; 
+import MuxPlayer from "@mux/mux-player-react"; 
 
 const Video = () => {
+  const [videoSrc, setVideoSrc] = useState("/videos/customsoftdesktop.mp4");
+
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth <= 768) {
+        setVideoSrc("/videos/customsoftmobile.mp4");
+      } else {
+        setVideoSrc("/videos/customsoftdesktop.mp4");
+      }
+    };
+
+    // Set initial source
+    handleResize();
+
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
   return (
     <div className="video-container">
       <div className="video-card">
         <div className="video-content">
-          <h3 className="video-tag">Ready to Transform Your Business?</h3>
+          <h3 className="video-tag">¿Listo para Transformar tu Negocio?</h3>
           <hr />
           <p className="video-description">
-            Join hundreds of companies that have optimized their workflow with our custom software solutions.
+            Únete a cientos de empresas que han optimizado su flujo de trabajo con nuestro software.
           </p>
 
-          <div className="video-wrapper" style={{display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: '300px', backgroundColor: '#f0f0f0', borderRadius: '10px'}}>
-             {/* <MuxPlayer playbackId="" ... /> */}
-             <div style={{color: '#555'}}>
-                 <span style={{fontSize: '48px'}}>🚀</span>
-                 <p>Software Demo Placeholder</p>
-             </div>
+          <div 
+            className="video-wrapper"
+            style={videoSrc.includes("mobile") ? { aspectRatio: "9/16", maxWidth: "280px", margin: "0 auto" } : {}}
+          >
+             <MuxPlayer
+              playbackId=""
+              src={videoSrc}
+              metadata={{
+                video_title: "CustomSoft - Marketing Video",
+                viewer_user_id: "user-id-guest",
+              }}
+              primaryColor="#007bff"
+              secondaryColor="#FFFFFF"
+              style={{
+                width: "100%",
+                height: "100%",
+                borderRadius: "10px",
+                overflow: "hidden",
+              }}
+            />
           </div>
 
           <button
             className="video-cta"
             onClick={() => window.open("https://wa.me/528124493708", "_blank")}
           >
-            Get Started Now!
+            ¡Comenzar Ahora!
           </button>
         </div>
       </div>

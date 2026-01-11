@@ -1,0 +1,102 @@
+.contacto-container {
+  padding: 4rem 2rem;
+  min-height: 80vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-image: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('/softwarebg.png');
+  background-size: cover;
+  background-attachment: fixed;
+}
+
+.contacto-card {
+  background: var(--color-surface);
+  border-radius: 20px;
+  box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+  overflow: hidden;
+  max-width: 1200px;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+}
+
+.contacto-info {
+  flex: 1;
+  padding: 3rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.contacto-title {
+  font-family: 'Signika', sans-serif;
+  font-size: 2.5rem;
+  color: var(--color-heading);
+  margin-bottom: 1rem;
+}
+
+.contacto-desc {
+  color: var(--color-text);
+  margin-bottom: 2rem;
+  font-size: 1.1rem;
+}
+
+.contact-method {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.contact-icon {
+  color: var(--color-primary);
+  width: 24px;
+  height: 24px;
+}
+
+.contact-text {
+  color: var(--color-text);
+  font-weight: 500;
+}
+
+.contact-cta {
+  background: var(--color-primary);
+  color: white;
+  border: none;
+  padding: 1rem 2rem;
+  border-radius: 30px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.3s ease;
+  margin-top: 1rem;
+  width: fit-content;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.contact-cta:hover {
+  background: var(--color-primary-hover);
+}
+
+.contacto-map {
+  flex: 1;
+  min-height: 400px;
+}
+
+.map-frame {
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+@media (max-width: 900px) {
+  .contacto-card {
+    flex-direction: column;
+  }
+
+  .contacto-map {
+    height: 300px;
+  }
+}

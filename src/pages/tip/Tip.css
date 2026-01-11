@@ -1,64 +1,113 @@
 .tip-container {
   padding: 10px;
-  background-image: linear-gradient(rgba(0, 0, 0, 0.3)),
-    url("./background2.jpeg");
-  background-size: cover; /* Para cubrir todo el contenedor */
-  background-position: center; /* Centrar la imagen */
-  background-repeat: no-repeat; /* Evitar repetición */
-  background-attachment: fixed; /* Opcional: efecto parallax */
+  background: color-mix(in srgb, var(--color-primary) 70%, transparent 50%);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 2rem;
+  padding: 4rem 2rem;
   min-height: 80vh;
 }
 
 .tip-card {
   display: flex;
-
-  width: 80vw;
+  background: var(--color-surface);
+  width: 90%;
+  max-width: 1200px;
   border-radius: 20px;
   overflow: hidden;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-  min-height: 400px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+  min-height: 500px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.tip-card.hover-lift:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
+}
+
+.tip-content {
+  flex: 1;
+  padding: 4rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background: var(--color-surface);
+  color: var(--color-text);
+  position: relative;
+  z-index: 1;
+}
+
+.tip-header-group {
+  margin-bottom: 2rem;
+}
+
+.tip-tag {
+  color: var(--color-primary);
+  font-size: 0.9rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin-bottom: 0.5rem;
+}
+
+.tip-headline {
+  font-family: 'Signika', sans-serif;
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--color-text);
+  margin-bottom: 1rem;
+  line-height: 1.2;
+}
+
+.tip-divider {
+  width: 60px;
+  height: 4px;
+  background: var(--color-primary);
+  border-radius: 2px;
 }
 
 .tips-mini {
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
-  height: 100%;
+  gap: 2rem;
 }
 
-.tip-content {
-  flex: 1 1 auto;
-  padding: 2.5rem;
-  background: color-mix(in srgb, var(--color-primary) 70%, transparent 50%);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
-
-.tip-tag {
-  color: white;
-  font-size: 1.2rem;
-  font-weight: 600;
-  margin-bottom: 1.5rem;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-}
-
-.tip-text {
-  color: white;
+.tip-description {
   font-size: 1.1rem;
   line-height: 1.6;
-  margin: 0;
+  color: var(--color-text);
+  opacity: 0.9;
+  max-width: 500px;
+}
+
+.tip-features {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.tip-feature {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  font-weight: 500;
+  color: var(--color-text);
+}
+
+.tip-icon {
+  color: var(--color-primary);
+  width: 24px;
+  height: 24px;
 }
 
 .tip-image {
   flex: 1;
+  position: relative;
+  min-height: 400px;
 }
 
 .tip-img {
@@ -66,26 +115,31 @@
   height: 100%;
   object-fit: cover;
   display: block;
+  transition: transform 0.5s ease;
+}
+
+.tip-card:hover .tip-img {
+  transform: scale(1.05);
 }
 
 /* Responsive */
-@media (max-width: 768px) {
+@media (max-width: 900px) {
   .tip-card {
     flex-direction: column;
-  }
-
-  .tip-content {
-    order: 2;
+    min-height: auto;
   }
 
   .tip-image {
     height: 300px;
+    min-height: 300px;
+    order: -1; /* Image first on mobile makes it look nice optionally, or keep bottom */
   }
-}
 
-body {
-  margin-bottom: 0;
-  min-height: 100vh; /* Asegura que el body ocupe al menos toda la pantalla */
-  display: flex;
-  flex-direction: column; /* Para que el footer se quede abajo */
+  .tip-content {
+    padding: 2.5rem;
+  }
+
+  .tip-headline {
+    font-size: 2rem;
+  }
 }

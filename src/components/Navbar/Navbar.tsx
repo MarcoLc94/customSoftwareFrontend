@@ -34,13 +34,6 @@ const Navbar = () => {
           <span className={`logo-text ${scrolled ? "scrolled-text" : ""}`}>
             CustomSoft
           </span>
-          <span
-            className={`material-symbols-outlined  ${
-              scrolled ? "scrolled-text" : ""
-            }`}
-          >
-            mode_off_on
-          </span>
         </Link>
       </div>
 
@@ -50,36 +43,36 @@ const Navbar = () => {
           className={`nav-link ${scrolled ? "scrolled-text" : ""}`}
           onClick={handleHomeClick}
         >
-          Home
+          Inicio
         </Link>
         <Link
-          to="/"
+          to="/servicios"
           className={`nav-link ${scrolled ? "scrolled-text" : ""}`}
           onClick={() => setMobileMenuOpen(false)}
         >
-          Services
+          Servicios
         </Link>
         <Link
-          to="/"
+          to="/proceso"
           className={`nav-link ${scrolled ? "scrolled-text" : ""}`}
           onClick={() => setMobileMenuOpen(false)}
         >
-          Process
+          Proceso
         </Link>
         <Link
-          to="/"
+          to="/contacto"
           className={`nav-link ${scrolled ? "scrolled-text" : ""}`}
           onClick={() => setMobileMenuOpen(false)}
         >
-          Contact
+          Contacto
         </Link>
-        <Link
+        {/* <Link
           to="/admin"
           className={`nav-link ${scrolled ? "scrolled-text" : ""}`}
           onClick={() => setMobileMenuOpen(false)}
         >
           Admin
-        </Link>
+        </Link> */}
       </div>
       <div className="navbar-cta">
         <button

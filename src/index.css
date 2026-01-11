@@ -7,7 +7,7 @@
 }
 
 :root {
-  --color-background: #f8f9fa;
+  --color-background: #f8f9faec;
   --color-primary: #0056b3; /* enlaces */
   --color-heading: #1e293b; /* títulos */
   --color-text: #334155; /* texto general */
@@ -15,7 +15,7 @@
 
 [data-theme="light"] {
   /* Colores base */
-  --color-background: #f8f9fa;
+  --color-background: #f8f9fae3;
   --color-text: #334155;
   --color-surface: #ffffff;
   --color-border: #e2e8f0;

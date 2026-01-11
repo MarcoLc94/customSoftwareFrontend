@@ -5,15 +5,14 @@ const Footer = () => {
     <footer className="footer" id="contact-section">
       <div className="footer-content">
         <div className="footer-section">
-          <h3 className="footer-title">NutriOn</h3>
+          <h3 className="footer-title">CustomSoft</h3>
           <p className="footer-text">
-            Nutrición personalizada que transforma planes en comidas listas para
-            disfrutar.
+            Desarrollo de software a medida que transforma procesos complejos en soluciones simples y eficientes.
           </p>
         </div>
 
         <div className="footer-section">
-          <h4 className="footer-subtitle">Enlaces rápidos</h4>
+          <h4 className="footer-subtitle">Enlaces Rápidos</h4>
           <ul className="footer-links">
             <li>
               <a href="/" className="footer-link">
@@ -21,17 +20,17 @@ const Footer = () => {
               </a>
             </li>
             <li>
-              <a href="/servicios" className="footer-link">
+              <a href="/" className="footer-link">
                 Servicios
               </a>
             </li>
             <li>
-              <a href="/menu" className="footer-link">
-                Menú
+              <a href="/" className="footer-link">
+                Proceso
               </a>
             </li>
             <li>
-              <a href="/contacto" className="footer-link">
+              <a href="/" className="footer-link">
                 Contacto
               </a>
             </li>
@@ -43,15 +42,15 @@ const Footer = () => {
           <ul className="footer-contact">
             <li className="footer-contact-item">
               <span className="material-symbols-outlined">mail</span>{" "}
-              info@nutrion.com
+              mlop.dev@outlook.com
             </li>
             <li className="footer-contact-item">
               <span className="material-symbols-outlined">call</span> +52 81
-              2449 3708
+              18474519
             </li>
             <li className="footer-contact-item">
               <span className="material-symbols-outlined">location_on</span>{" "}
-              Mty, México
+              Guadalupe, Nuevo León, México
             </li>
           </ul>
         </div>
@@ -59,9 +58,9 @@ const Footer = () => {
 
       <div className="footer-bottom">
         <p>
-          © {new Date().getFullYear()} NutriOn. Todos los derechos reservados.
+          © {new Date().getFullYear()} CustomSoft. Todos los derechos reservados.
         </p>
-        <div className="footer-social">
+        {/* <div className="footer-social">
           <a href="#" aria-label="Facebook">
             <span>facebook</span>
           </a>
@@ -71,7 +70,7 @@ const Footer = () => {
           <a href="#" aria-label="Twitter">
             <span>twitter</span>
           </a>
-        </div>
+        </div> */}
       </div>
     </footer>
   );

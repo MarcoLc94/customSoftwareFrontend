@@ -1,5 +1,5 @@
 .main-container {
-    background-color: var(--color-background);
+    background-color: gray;
     color: var(--color-text);
   }
   
@@ -8,8 +8,15 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    background: linear-gradient(135deg, var(--color-background) 0%, var(--color-surface) 100%);
+    background-image: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('/softwarebg.png');
     padding: 2rem;
+  }
+
+  @media (max-width: 768px) {
+    .inicio-container {
+        padding-top: 6rem; /* Extra padding for mobile title visibility */
+        align-items: flex-start; /* Align closer to top */
+    }
   }
   
   .hero-content {
@@ -33,7 +40,7 @@
   }
   
   .slogan {
-    color: var(--color-text);
+    color: var(--color-button-text);
     font-weight: 500;
     font-size: clamp(1.1rem, 2vw, 1.5rem);
     text-align: center;
@@ -43,7 +50,12 @@
   
   .services-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    /* User requested 3 cards width x 2 height for desktop */
+    grid-template-columns: repeat(3, 1fr);
+    /* For smaller screens (tablet/mobile), switch to responsive */
+    @media (max-width: 900px) {
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    }
     gap: 1.5rem;
     width: 100%;
     margin: 2rem 0;
@@ -74,7 +86,7 @@
   }
   
   .service-card h3 {
-    color: var(--color-heading);
+    color: var(--color-text);
     font-size: 1.2rem;
     margin-bottom: 0.25rem;
   }

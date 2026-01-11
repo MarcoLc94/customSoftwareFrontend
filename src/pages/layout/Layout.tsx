@@ -4,6 +4,7 @@ import "./Layout.css";
 import { ThemeProvider } from "../../context/ThemeProvider";
 import Footer from "../footer/Footer";
 
+
 const layout = () => {
   return (
     <div className="layout-container">

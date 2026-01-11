@@ -7,7 +7,7 @@
   align-items: center;
   justify-content: space-between;
   padding: 10px;
-  background-color: var(--color-background);
+  background-color: transparent;
   backdrop-filter: blur(10px);
   height: 6vh;
   transition: all 0.3s ease;
@@ -32,7 +32,7 @@
 
 .navbar-logo a {
   text-decoration: none;
-  color: var(--color-text);
+  color: var(--color-button-text);
   font-weight: 700;
   font-size: 2rem;
   display: flex;
@@ -66,7 +66,7 @@
 }
 
 .nav-link {
-  color: var(--color-text);
+  color: var(--color-button-text);
   text-decoration: none;
   font-weight: 500;
   position: relative;
@@ -230,36 +230,30 @@
 
 /* Responsive Design */
 @media (max-width: 992px) {
-  .navbar-links {
+  .navbar-links,
+  .navbar-links.scrolled {
     position: fixed;
     top: 47px;
     left: -100%;
     width: 100%;
     height: calc(100vh);
-    background-color: var(--color-background);
-    color: var(--color-text);
+    background-color: var(--color-surface); /* Ensure solid background */
+    color: var(--color-heading);
     flex-direction: column;
     align-items: center;
     padding: 2rem 0;
     gap: 2rem;
     transition: left 0.3s ease;
-    backdrop-filter: blur(10px);
+    backdrop-filter: none; /* Solid bg is better for contrast */
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
   }
 
-  .navbar-links .scrolled {
-    position: fixed;
-    top: 47px;
-    left: -100%;
-    width: 100%;
-    height: calc(100vh);
-    background-color: var(--color-background);
-    color: var(--color-surface);
-    flex-direction: column;
-    align-items: center;
-    padding: 2rem 0;
-    gap: 2rem;
-    transition: left 0.3s ease;
-    backdrop-filter: blur(10px);
+  /* Specific text color for mobile links to ensure contrast against surface */
+  .navbar-links .nav-link,
+  .navbar-links.scrolled .nav-link {
+    color: var(--color-heading);
+    font-size: 1.5rem;
+    font-weight: 600;
   }
 
   .navbar-links.active {
@@ -268,6 +262,12 @@
 
   .mobile-menu-button {
     display: block;
+    color: var(--color-button-text); /* Use contrasting color for hamburger */
+  }
+  
+  /* Ensure hamburger is visible on light/dark backgrounds */
+  .navbar.scrolled .mobile-menu-button {
+      color: var(--color-button-text);
   }
 
   .navbar-cta {

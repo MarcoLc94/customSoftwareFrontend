@@ -1,50 +1,57 @@
 import "./How.css";
 
+import "./How.css";
+import { MessageCircle, PenTool, Code, Rocket } from "lucide-react";
+
 const How = () => {
   return (
     <div className="how-container">
-      <div className="how-card">
+      <div className="how-card hover-lift">
         <div className="how-content">
-          <h3 className="how-tag">Our Process</h3>
-          <hr />
+          <div className="how-header-group">
+            <h3 className="how-tag">Nuestro Proceso</h3>
+            <h2 className="how-headline">De la Idea a la Realidad</h2>
+            <div className="how-divider"></div>
+          </div>
+
           <div className="steps-container">
-            <div className="step">
-              <div className="step-number">1</div>
-              <div className="step-content">
-                <h4 className="step-title">Consultation</h4>
-                <p className="step-text">
-                  We discuss your needs and understand your business pain points.
-                </p>
+            <div className="step-item">
+              <div className="step-icon-wrapper">
+                <MessageCircle className="step-icon" />
+              </div>
+              <div className="step-details">
+                <h4 className="step-title">Consulta</h4>
+                <p className="step-text">Entendemos tus desafíos y definimos los objetivos.</p>
               </div>
             </div>
 
-            <div className="step">
-              <div className="step-number">2</div>
-              <div className="step-content">
-                <h4 className="step-title">Proposal & Design</h4>
-                <p className="step-text">
-                  We propose a solution and design the perfect interface for you.
-                </p>
+            <div className="step-item">
+              <div className="step-icon-wrapper">
+                <PenTool className="step-icon" />
+              </div>
+              <div className="step-details">
+                <h4 className="step-title">Diseño</h4>
+                <p className="step-text">Prototipamos una solución visual atractiva y funcional.</p>
               </div>
             </div>
 
-            <div className="step">
-              <div className="step-number">3</div>
-              <div className="step-content">
-                <h4 className="step-title">Development</h4>
-                <p className="step-text">
-                  Our expert team builds your custom software with agility.
-                </p>
+            <div className="step-item">
+              <div className="step-icon-wrapper">
+                <Code className="step-icon" />
+              </div>
+              <div className="step-details">
+                <h4 className="step-title">Desarrollo</h4>
+                <p className="step-text">Construimos el software con las mejores prácticas.</p>
               </div>
             </div>
 
-            <div className="step">
-              <div className="step-number">4</div>
-              <div className="step-content">
-                <h4 className="step-title">Launch & Support</h4>
-                <p className="step-text">
-                  We deploy your system and provide ongoing support.
-                </p>
+            <div className="step-item">
+              <div className="step-icon-wrapper">
+                <Rocket className="step-icon" />
+              </div>
+              <div className="step-details">
+                <h4 className="step-title">Lanzamiento</h4>
+                <p className="step-text">Despliegue exitoso y soporte continuo garantizado.</p>
               </div>
             </div>
           </div>
@@ -52,7 +59,7 @@ const How = () => {
         <div className="how-image">
           <img
             src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
-            alt="Team Collaboration"
+            alt="Equipo Colaborando"
             className="how-img"
           />
         </div>

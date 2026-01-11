@@ -4,67 +4,61 @@ const Testimonials = () => {
   return (
     <div className="testimonials-container">
       <div className="testimonials-header">
-        <h3 className="testimonials-tag">Historias de Éxito</h3>
+        <h3 className="testimonials-tag">Casos de Éxito</h3>
         <hr />
         <p className="testimonials-subtitle">
-          Lo que nuestros clientes dicen sobre NutriOn
+          Lo que nuestros clientes dicen sobre CustomSoft
         </p>
       </div>
 
       <div className="testimonials-grid">
-        {/* Testimonio 1 - Anciano */}
+        {/* Testimonio 1 - CEO */}
         <div className="testimonial-card">
           <div className="testimonial-profile">
             <img
-              src="/anciano.jpg"
-              alt="Don José"
+              src="/new-logo.jpeg"
+              alt="David Torres"
               className="testimonial-image"
             />
-            <h4 className="testimonial-name">Don José</h4>
-            <p className="testimonial-age">72 años</p>
+            <h4 className="testimonial-name">David Torres</h4>
+            <p className="testimonial-age">CEO, ATS Productos</p>
+            <p className="testimonial-age">Salinas Victoria, NL.</p>
           </div>
           <div className="testimonial-content">
             <p className="testimonial-text">
-              "A mi edad, tenía problemas de azúcar y presión. Con NutriOn no
-              solo mejoré mis niveles, sino que recuperé energía. Mis médicos no
-              pueden creer el cambio. ¡La comida es deliciosa y me siento como
-              hace 20 años!"
+              "Necesitábamos un sistema de inventario a medida para nuestros almacenes. Las soluciones comerciales eran muy rígidas. CustomSoft entendió nuestro flujo y creó una herramienta perfecta. Redujimos pérdidas un 20% en el primer trimestre."
             </p>
             <div className="testimonial-rating">★★★★★</div>
           </div>
         </div>
 
-        {/* Testimonio 2 - Mujer obesa */}
+        {/* Testimonio 2 - Gerente */}
         <div className="testimonial-card">
           <div className="testimonial-profile">
-            <img src="/obesa.jpeg" alt="María" className="testimonial-image" />
-            <h4 className="testimonial-name">María</h4>
-            <p className="testimonial-age">38 años</p>
+            <img src="/losreyes.png" alt="Joaquin Almaguer" className="testimonial-image" />
+            <h4 className="testimonial-name">Joaquin Almaguer</h4>
+            <p className="testimonial-age">CEO, Gruas Los Reyes</p>
+            <p className="testimonial-age">Guadalupe, NL.</p>
           </div>
           <div className="testimonial-content">
             <p className="testimonial-text">
-              "Perdí 28 kg en 8 meses sin pasar hambre. Antes probé todas las
-              dietas, pero NutriOn fue diferente. La comida es abundante y
-              sabrosa, y mi nutrióloga ajustaba el plan según mi progreso. ¡Por
-              fin me siento bien en mi cuerpo!"
+              "Necesitabamos ayuda para atraer nuevos clientes y prospectos. El sitio web  que desarrollaron para nosotros aumento nuestro tráfico y ventas."
             </p>
             <div className="testimonial-rating">★★★★☆</div>
           </div>
         </div>
 
-        {/* Testimonio 3 - Joven flaco */}
+        {/* Testimonio 3 - Dueño Pyme */}
         <div className="testimonial-card">
           <div className="testimonial-profile">
-            <img src="/guy.jpg" alt="Carlos" className="testimonial-image" />
-            <h4 className="testimonial-name">Carlos</h4>
-            <p className="testimonial-age">25 años</p>
+            <img src="/autocerrajeria.jpg" alt="Humberto Lopez" className="testimonial-image" />
+            <h4 className="testimonial-name">Humberto Lopez</h4>
+            <p className="testimonial-age">Dueño, Autocerrajeria</p>
+            <p className="testimonial-age">Guadalupe, NL.</p>
           </div>
           <div className="testimonial-content">
             <p className="testimonial-text">
-              "Siempre fui muy delgado y por más que comía no ganaba masa. Con
-              NutriOn y el gimnasio logré subir 9 kg de músculo en 5 meses. Las
-              comidas tienen exactamente las proteínas y calorías que necesito.
-              ¡Totalmente recomendado!"
+              "Quería un sitio web para mostrar mis servicios y mis productos. El equipo me entregó una solución rápida, bonita y fácil de usar para mis clientes. ¡El soporte es excelente!"
             </p>
             <div className="testimonial-rating">★★★★★</div>
           </div>
