@@ -1,0 +1,301 @@
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0; /* Cambia width: 100% por right: 0 */
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px;
+  background-color: var(--color-background);
+  backdrop-filter: blur(10px);
+  height: 6vh;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 10px var(--color-shadow);
+  z-index: 2000;
+  box-sizing: border-box; /* Asegura que el padding no añada al ancho */
+}
+
+.navbar.scrolled {
+  padding: 0.5rem;
+  background-color: var(--color-primary-bg-select);
+}
+
+.navbar-logo {
+  display: flex;
+  align-items: center;
+  .material-symbols-outlined {
+    font-weight: 600;
+    font-size: 30px;
+  }
+}
+
+.navbar-logo a {
+  text-decoration: none;
+  color: var(--color-text);
+  font-weight: 700;
+  font-size: 2rem;
+  display: flex;
+  align-items: center;
+}
+
+.logo-text {
+  margin-right: 0.5rem;
+  font-family: Signika;
+}
+
+.logo-text.scrolled-text {
+  color: var(--color-button-text);
+  font-weight: 700;
+}
+
+.scrolled-text {
+  color: var(--color-button-text);
+  font-weight: 700;
+}
+
+.logo-icon {
+  font-size: 1.8rem;
+}
+
+.navbar-links {
+  display: flex;
+  gap: 2rem;
+  width: 30%;
+  justify-content: space-between;
+}
+
+.nav-link {
+  color: var(--color-text);
+  text-decoration: none;
+  font-weight: 500;
+  position: relative;
+  padding: 0.5rem 0;
+  transition: color 0.3s ease;
+  width: 100%;
+  font-size: 20px;
+  display: flex;
+  text-align: center;
+  justify-content: center;
+}
+
+.nav-link:hover {
+  color: var(--color-primary-hover);
+}
+
+.nav-link::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background-color: var(--color-primary-hover);
+  transition: width 0.3s ease;
+}
+
+.nav-link:hover::after {
+  width: 100%;
+}
+
+.scrolled-text {
+  color: var(--color-button-text);
+}
+
+.nav-link.scrolled-text:hover {
+  color: var(--color-primary-hover);
+}
+
+.nav-link.scrolled-text::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background-color: #c8ca34;
+  transition: width 0.3s ease;
+}
+
+.cta-button {
+  background-color: white;
+  color: #28a745;
+  border: none;
+  padding: 0.6rem 1.5rem;
+  border-radius: 50px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.cta-button:hover {
+  background-color: #f8f9fa;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+}
+
+.mobile-menu-button {
+  display: none;
+  color: var(--color-text);
+  font-size: 1.5rem;
+  cursor: pointer;
+  margin-right: 5vw;
+}
+
+.mobile-menu-button.scrolled-text {
+  color: rgba(245, 245, 245, 0.98);
+  font-size: 1.5rem;
+  cursor: pointer;
+  margin-right: 6vw;
+}
+
+.navbar-cta {
+  margin-right: 30px;
+}
+
+.theme-toggle {
+  --toggle-width: 60px;
+  --toggle-height: 30px;
+  --thumb-size: 26px;
+  --thumb-padding: 2px;
+
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  padding: 0;
+}
+
+.toggle-track {
+  position: relative;
+  width: var(--toggle-width);
+  height: var(--toggle-height);
+  border-radius: 50px;
+  display: flex;
+  align-items: center;
+  transition: all 0.3s ease;
+}
+
+/* Fondo del track para cada tema */
+.toggle-track.light {
+  background: linear-gradient(to right, #f0f0f0, #e0e0e0);
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.toggle-track.dark {
+  background: linear-gradient(to right, #333, #444);
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.toggle-thumb {
+  position: absolute;
+  width: var(--thumb-size);
+  height: var(--thumb-size);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.3s cubic-bezier(0.25, 0.1, 0.25, 1);
+}
+
+/* Posición del thumb para cada tema */
+.toggle-track.light .toggle-thumb {
+  transform: translateX(var(--thumb-padding));
+  background: #ffffff;
+  color: #ffc107; /* Color amarillo para el icono de luna */
+}
+
+.toggle-track.dark .toggle-thumb {
+  transform: translateX(
+    calc(var(--toggle-width) - var(--thumb-size) - var(--thumb-padding))
+  );
+  background: #1e1e1e;
+  color: #ffd54f; /* Color amarillo claro para el icono de sol */
+}
+
+/* Efecto hover */
+.theme-toggle:hover .toggle-track.light {
+  box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.theme-toggle:hover .toggle-track.dark {
+  box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.5);
+}
+
+/* Estilos para los íconos */
+.theme-toggle .material-symbols-outlined {
+  font-size: 18px;
+  transition: all 0.3s ease;
+}
+
+/* Responsive Design */
+@media (max-width: 992px) {
+  .navbar-links {
+    position: fixed;
+    top: 47px;
+    left: -100%;
+    width: 100%;
+    height: calc(100vh);
+    background-color: var(--color-background);
+    color: var(--color-text);
+    flex-direction: column;
+    align-items: center;
+    padding: 2rem 0;
+    gap: 2rem;
+    transition: left 0.3s ease;
+    backdrop-filter: blur(10px);
+  }
+
+  .navbar-links .scrolled {
+    position: fixed;
+    top: 47px;
+    left: -100%;
+    width: 100%;
+    height: calc(100vh);
+    background-color: var(--color-background);
+    color: var(--color-surface);
+    flex-direction: column;
+    align-items: center;
+    padding: 2rem 0;
+    gap: 2rem;
+    transition: left 0.3s ease;
+    backdrop-filter: blur(10px);
+  }
+
+  .navbar-links.active {
+    left: 0;
+  }
+
+  .mobile-menu-button {
+    display: block;
+  }
+
+  .navbar-cta {
+    display: none;
+  }
+}
+
+@media (max-width: 576px) {
+  .navbar {
+    padding: 0.8rem 5%;
+  }
+
+  .navbar-logo a {
+    font-size: 1.3rem;
+  }
+
+  .logo-icon {
+    font-size: 1.5rem;
+  }
+}
+
+@media (width < 500px) {
+  .navbar-links.active {
+    display: block;
+
+    .nav-link {
+      margin-bottom: 20%;
+      margin-top: 10%;
+    }
+  }
+}

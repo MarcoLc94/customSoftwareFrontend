@@ -1,0 +1,17 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box; /* MUY IMPORTANTE */
+  font-family: Inter;
+}
+
+html, body {
+  width: 100%;
+  overflow-x: hidden; /* Evita scroll horizontal */
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  max-width: 100vw;
+}

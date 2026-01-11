@@ -1,0 +1,45 @@
+.under-construction {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  text-align: center;
+  padding: 2rem;
+  background-color: var(--color-surface);
+  border: 2px dashed var(--color-border);
+  border-radius: var(--border-radius);
+  box-shadow: 0 4px 10px var(--color-shadow);
+  transition: background-color var(--transition-speed),
+    color var(--transition-speed);
+}
+
+.under-construction__icon {
+  color: var(--color-text);
+  margin-bottom: 1rem;
+  animation: pulse 1.8s infinite;
+}
+
+.under-construction__title {
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+  color: var(--color-text);
+}
+
+.under-construction__message {
+  font-size: 1rem;
+  color: var(--color-text);
+  max-width: 600px;
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.1);
+    opacity: 0.7;
+  }
+}
