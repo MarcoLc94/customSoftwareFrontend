@@ -9,7 +9,7 @@ const Tip = () => {
       <div className="tip-card hover-lift">
         <div className="tip-content">
           <div className="tip-header-group">
-            <h3 className="tip-tag">Sobre CustomSoft</h3>
+            <h3 className="tip-tag">Sobre Desarrollo web & mobile</h3>
             <h2 className="tip-headline">Impulsando tu Éxito Digital</h2>
             <div className="tip-divider"></div>
           </div>

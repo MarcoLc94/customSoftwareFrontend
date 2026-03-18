@@ -46,7 +46,7 @@ const Contacto = () => {
             src="https://maps.google.com/maps?q=Microndas,Guadalupe,CP67199,NuevoLeon,Mexico&t=&z=15&ie=UTF8&iwloc=&output=embed"
             loading="lazy"
             referrerPolicy="no-referrer-when-downgrade"
-            title="Ubicación CustomSoft"
+            title="Ubicación Desarrollo Web & Mobile"
           ></iframe>
         </div>
       </div>

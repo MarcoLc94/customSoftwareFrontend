@@ -58,7 +58,7 @@ const Footer = () => {
 
       <div className="footer-bottom">
         <p>
-          © {new Date().getFullYear()} CustomSoft. Todos los derechos reservados.
+          © {new Date().getFullYear()} Desarrollo Web & Mobile. Todos los derechos reservados.
         </p>
         {/* <div className="footer-social">
           <a href="#" aria-label="Facebook">

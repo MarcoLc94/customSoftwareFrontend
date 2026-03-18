@@ -7,7 +7,7 @@ const Testimonials = () => {
         <h3 className="testimonials-tag">Casos de Éxito</h3>
         <hr />
         <p className="testimonials-subtitle">
-          Lo que nuestros clientes dicen sobre CustomSoft
+          Lo que nuestros clientes dicen sobre Desarrollo Web & Mobile
         </p>
       </div>
 
@@ -26,7 +26,7 @@ const Testimonials = () => {
           </div>
           <div className="testimonial-content">
             <p className="testimonial-text">
-              "Necesitábamos un sistema de inventario a medida para nuestros almacenes. Las soluciones comerciales eran muy rígidas. CustomSoft entendió nuestro flujo y creó una herramienta perfecta. Redujimos pérdidas un 20% en el primer trimestre."
+              "Necesitábamos un sistema de inventario a medida para nuestros almacenes. Las soluciones comerciales eran muy rígidas. Desarrollo Web & Mobile entendió nuestro flujo y creó una herramienta perfecta. Redujimos pérdidas un 20% en el primer trimestre."
             </p>
             <div className="testimonial-rating">★★★★★</div>
           </div>
