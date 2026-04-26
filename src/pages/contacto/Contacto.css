@@ -1,10 +1,11 @@
 .contacto-container {
-  padding: 4rem 2rem;
-  min-height: 80vh;
+  padding: 5rem 2rem;
+  min-height: calc(100vh - var(--navbar-height, 64px));
   display: flex;
   justify-content: center;
   align-items: center;
-  background-image: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('/softwarebg.png');
+  background-image: linear-gradient(rgba(0, 0, 0, 0.65), rgba(0, 0, 0, 0.65)),
+    url("/softwarebg.png");
   background-size: cover;
   background-attachment: fixed;
 }
@@ -12,9 +13,9 @@
 .contacto-card {
   background: var(--color-surface);
   border-radius: 20px;
-  box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
   overflow: hidden;
-  max-width: 1200px;
+  max-width: 1100px;
   width: 100%;
   display: flex;
   flex-direction: row;
@@ -22,73 +23,94 @@
 
 .contacto-info {
   flex: 1;
-  padding: 3rem;
+  padding: 3.5rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
+  gap: 1.5rem;
+}
+
+.contacto-tag {
+  color: var(--color-primary);
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 2.5px;
 }
 
 .contacto-title {
-  font-family: 'Signika', sans-serif;
-  font-size: 2.5rem;
+  font-family: "Signika", sans-serif;
+  font-size: clamp(1.75rem, 3vw, 2.5rem);
   color: var(--color-heading);
-  margin-bottom: 1rem;
+  font-weight: 700;
+  line-height: 1.2;
 }
 
 .contacto-desc {
   color: var(--color-text);
-  margin-bottom: 2rem;
-  font-size: 1.1rem;
+  font-size: 1rem;
+  line-height: 1.65;
+  opacity: 0.88;
+}
+
+.contact-methods {
+  display: flex;
+  flex-direction: column;
+  gap: 1.1rem;
 }
 
 .contact-method {
   display: flex;
   align-items: center;
-  gap: 1rem;
-  margin-bottom: 1.5rem;
+  gap: 0.9rem;
 }
 
 .contact-icon {
   color: var(--color-primary);
-  width: 24px;
-  height: 24px;
+  width: 22px;
+  height: 22px;
+  flex-shrink: 0;
 }
 
 .contact-text {
   color: var(--color-text);
   font-weight: 500;
+  font-size: 0.975rem;
 }
 
 .contact-cta {
   background: var(--color-primary);
   color: white;
   border: none;
-  padding: 1rem 2rem;
-  border-radius: 30px;
-  font-size: 1.1rem;
+  padding: 0.9rem 2rem;
+  border-radius: 9999px;
+  font-size: 1rem;
   font-weight: 600;
   cursor: pointer;
-  transition: background 0.3s ease;
-  margin-top: 1rem;
+  transition: all 0.25s ease;
   width: fit-content;
-  display: flex;
+  display: inline-flex;
   align-items: center;
   gap: 0.5rem;
+  text-decoration: none;
 }
 
 .contact-cta:hover {
-  background: var(--color-primary-hover);
+  background: var(--color-primary-intense, #004494);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 86, 179, 0.35);
 }
 
 .contacto-map {
   flex: 1;
-  min-height: 400px;
+  min-height: 420px;
 }
 
 .map-frame {
   width: 100%;
   height: 100%;
   border: none;
+  display: block;
 }
 
 @media (max-width: 900px) {
@@ -96,7 +118,18 @@
     flex-direction: column;
   }
 
+  .contacto-info {
+    padding: 2.5rem 2rem;
+  }
+
   .contacto-map {
     height: 300px;
+    min-height: 300px;
+  }
+}
+
+@media (max-width: 600px) {
+  .contacto-container {
+    padding: 3rem 1.25rem;
   }
 }

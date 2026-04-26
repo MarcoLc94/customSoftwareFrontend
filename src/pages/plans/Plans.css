@@ -1,5 +1,6 @@
 .plans-container {
-  padding: 4rem 2rem;
+  padding: 5rem 2rem;
+  min-height: calc(100vh - var(--navbar-height, 64px));
   background-color: var(--color-background);
   display: flex;
   flex-direction: column;
@@ -8,51 +9,68 @@
 
 .plans-header {
   text-align: center;
-  margin-bottom: 3rem;
-  max-width: 800px;
+  margin-bottom: 3.5rem;
+  max-width: 700px;
+}
+
+.plans-tag {
+  color: var(--color-primary);
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 2.5px;
+  margin-bottom: 0.75rem;
+  display: block;
 }
 
 .plans-title {
-  color: var(--color-primary);
-  font-size: 2rem;
+  color: var(--color-heading);
+  font-family: "Signika", sans-serif;
+  font-size: clamp(1.75rem, 3.5vw, 3rem);
   font-weight: 700;
   margin-bottom: 1rem;
+  line-height: 1.2;
 }
 
 .plans-subtitle {
   color: var(--color-text);
-  font-size: 1.1rem;
+  font-size: 1.05rem;
+  opacity: 0.85;
+  line-height: 1.6;
 }
 
 .plans-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 2rem;
+  grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+  gap: 1.75rem;
   width: 100%;
   max-width: 1200px;
 }
 
 .plan-card {
   background: var(--color-card-background);
-  border-radius: 15px;
+  border-radius: 18px;
   overflow: hidden;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.09);
   display: flex;
   flex-direction: column;
-  transition: transform 0.3s ease;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
   position: relative;
+  border: 1px solid var(--color-border);
 }
 
 .plan-card.featured {
   border: 2px solid var(--color-primary);
+  box-shadow: 0 8px 30px rgba(0, 86, 179, 0.2);
 }
 
 .plan-card:hover {
-  transform: translateY(-10px);
+  transform: translateY(-8px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
 }
 
 .plan-image-container {
-  height: 200px;
+  height: 190px;
   overflow: hidden;
 }
 
@@ -76,15 +94,16 @@
 
 .plan-name {
   color: var(--color-primary);
-  font-size: 1.5rem;
-  margin: 0 0 0.5rem;
+  font-size: 1.35rem;
+  font-weight: 700;
+  margin: 0 0 0.4rem;
 }
 
 .plan-price {
-  color: var(--color-text);
-  font-size: 1.3rem;
-  font-weight: 600;
-  margin: 0 0 1rem;
+  color: var(--color-heading);
+  font-size: 1.2rem;
+  font-weight: 700;
+  margin: 0 0 1.1rem;
 }
 
 .plan-features {
@@ -96,56 +115,59 @@
 
 .plan-features li {
   color: var(--color-text);
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.6rem;
   padding-left: 1.5rem;
   position: relative;
   line-height: 1.5;
+  font-size: 0.95rem;
 }
 
-.plan-features li:before {
+.plan-features li::before {
   content: "✓";
   color: var(--color-primary);
   position: absolute;
   left: 0;
+  font-weight: 700;
 }
 
 .plan-button {
   background-color: var(--color-primary);
   color: white;
   text-align: center;
-  padding: 12px 20px;
-  border-radius: 30px;
+  padding: 0.85rem 1.5rem;
+  border-radius: 9999px;
   text-decoration: none;
   font-weight: 600;
-  transition: all 0.3s ease;
+  font-size: 0.95rem;
+  transition: all 0.25s ease;
   display: inline-block;
   margin-top: auto;
+  border: none;
+  cursor: pointer;
 }
 
 .plan-button:hover {
-  background-color: var(--color-primary-hover);
+  background-color: var(--color-primary-intense, #004494);
   transform: translateY(-2px);
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 6px 20px rgba(0, 86, 179, 0.3);
 }
 
-/* Responsive */
+[data-theme="dark"] .plan-card {
+  background: var(--color-surface);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+}
+
 @media (max-width: 768px) {
+  .plans-container {
+    padding: 3.5rem 1.25rem;
+  }
+
   .plans-grid {
     grid-template-columns: 1fr;
-    max-width: 500px;
+    max-width: 480px;
   }
 
   .plans-header {
-    margin-bottom: 2rem;
+    margin-bottom: 2.5rem;
   }
-}
-
-/* Tema oscuro */
-[data-theme="dark"] .plan-card {
-  background: var(--color-surface);
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-}
-
-[data-theme="dark"] .plan-features li {
-  color: var(--color-text);
 }
