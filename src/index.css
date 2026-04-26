@@ -1,8 +1,27 @@
 @import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&family=Signika:wght@300..700&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap");
 
-html {
-  scroll-behavior: smooth;
+html,
+body {
+  height: 100%;
+  /* Hide native scrollbar (ScrollSmoother handles smooth scroll visually) */
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  overflow-x: hidden;
+}
+
+html::-webkit-scrollbar,
+body::-webkit-scrollbar {
+  display: none;
+}
+
+body {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.45)),
+    url("/softwarebackground.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
 }
 
 * {
@@ -136,4 +155,17 @@ html {
 
 ::-webkit-scrollbar-thumb:hover {
   background: var(--color-primary-intense);
+}
+
+/* ── Material Symbols FOUC fix ───────────────────────────────────────────────
+   Hide icon-font text while the font file is still downloading.
+   'fonts-loaded' is added to <html> by main.tsx via document.fonts.ready.
+   opacity preserves layout space (no shift) and fades in smoothly once ready. */
+.material-symbols-outlined {
+  opacity: 0;
+  transition: opacity 0.25s ease;
+}
+
+html.fonts-loaded .material-symbols-outlined {
+  opacity: 1;
 }

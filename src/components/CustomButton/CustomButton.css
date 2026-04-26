@@ -43,8 +43,8 @@
 
 /* Primary */
 .button--primary {
-  background-color: var(--color-primary);
-  color: white;
+  background-color: rgb(56, 189, 248);
+  color: black;
 }
 
 .button--primary:hover,
@@ -144,10 +144,21 @@
 }
 
 /* Border radius */
-.button--rounded-small  { border-radius: 6px; }
-.button--rounded-medium { border-radius: 10px; }
-.button--rounded-large  { border-radius: 14px; }
-.button--rounded-full   { border-radius: 9999px; }
+.button--rounded-small {
+  border-radius: 6px;
+}
+
+.button--rounded-medium {
+  border-radius: 10px;
+}
+
+.button--rounded-large {
+  border-radius: 14px;
+}
+
+.button--rounded-full {
+  border-radius: 9999px;
+}
 
 /* Full width */
 .button--full-width {
