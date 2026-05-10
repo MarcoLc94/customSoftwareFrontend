@@ -1,192 +1,303 @@
-.proceso-container {
-  padding: 5rem 2rem;
-  min-height: calc(100vh - var(--navbar-height, 64px));
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-image: linear-gradient(rgba(0, 0, 0, 0.65), rgba(0, 0, 0, 0.65)),
-    url("/softwarebg.png");
-  background-size: cover;
-  background-attachment: fixed;
+.proc-page {
+  position: relative;
+  overflow: hidden;
+  min-height: 100vh;
+  padding: calc(var(--navbar-height, 64px) + 4rem) 2rem 7rem;
+  background: linear-gradient(160deg, #04091a 0%, #070f20 45%, #09152a 100%);
 }
 
-.proceso-content {
-  max-width: 1200px;
-  width: 100%;
+/* ─── Background ─── */
+.proc-bg {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 0;
+}
+
+.proc-orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(90px);
+}
+
+.proc-orb--1 {
+  width: 550px;
+  height: 550px;
+  background: radial-gradient(circle, rgba(56, 189, 248, 0.14) 0%, transparent 65%);
+  top: -180px;
+  right: -100px;
+}
+
+.proc-orb--2 {
+  width: 450px;
+  height: 450px;
+  background: radial-gradient(circle, rgba(99, 102, 241, 0.12) 0%, transparent 65%);
+  bottom: -120px;
+  left: -80px;
+}
+
+/* ─── Layout ─── */
+.proc-inner {
+  position: relative;
+  z-index: 1;
+  max-width: 780px;
+  margin: 0 auto;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  gap: 3.5rem;
+  gap: 4.5rem;
 }
 
-/* ── Header ─────────────────────────────────────────────────────────────── */
-.proceso-header {
+/* ─── Header ─── */
+.proc-header {
   text-align: center;
-  color: white;
   display: flex;
   flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.proc-label {
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #38bdf8;
+}
+
+.proc-title {
+  font-family: "Signika", sans-serif;
+  font-size: clamp(2.4rem, 6vw, 4rem);
+  font-weight: 700;
+  color: #ffffff;
+  line-height: 1.1;
+  letter-spacing: -0.025em;
+}
+
+.proc-subtitle {
+  font-size: clamp(1rem, 2vw, 1.15rem);
+  color: rgba(255, 255, 255, 0.6);
+  max-width: 520px;
+  line-height: 1.7;
+}
+
+/* ─── Timeline ─── */
+.proc-timeline {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+/* ─── Single step ─── */
+.proc-step {
+  display: flex;
+  gap: 2rem;
+  align-items: flex-start;
+}
+
+/* Left column: number + line */
+.proc-step-left {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex-shrink: 0;
+  width: 56px;
+}
+
+.proc-step-num {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: #070f20;
+  border: 2px solid #38bdf8;
+  color: #38bdf8;
+  font-family: "Signika", sans-serif;
+  font-size: 0.9rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  position: relative;
+  z-index: 1;
+  transition: background 0.25s ease, box-shadow 0.25s ease;
+}
+
+.proc-step:hover .proc-step-num {
+  background: rgba(56, 189, 248, 0.12);
+  box-shadow: 0 0 20px rgba(56, 189, 248, 0.25);
+}
+
+.proc-step-line {
+  width: 2px;
+  flex-grow: 1;
+  min-height: 40px;
+  background: linear-gradient(180deg, rgba(56, 189, 248, 0.4), rgba(56, 189, 248, 0.08));
+  margin: 8px 0;
+}
+
+/* Right column: card */
+.proc-step-card {
+  flex: 1;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 18px;
+  padding: 1.75rem 2rem;
+  margin-bottom: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  transition: background 0.25s ease, border-color 0.25s ease;
+}
+
+.proc-step:hover .proc-step-card {
+  background: rgba(56, 189, 248, 0.05);
+  border-color: rgba(56, 189, 248, 0.2);
+}
+
+.proc-step-card-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.proc-step-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  background: rgba(56, 189, 248, 0.09);
+  border: 1px solid rgba(56, 189, 248, 0.16);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.proc-icon-svg {
+  width: 20px;
+  height: 20px;
+  color: #38bdf8;
+}
+
+.proc-step-duration {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: rgba(56, 189, 248, 0.7);
+  background: rgba(56, 189, 248, 0.08);
+  border: 1px solid rgba(56, 189, 248, 0.14);
+  padding: 0.25rem 0.7rem;
+  border-radius: 100px;
+  letter-spacing: 0.04em;
+}
+
+.proc-step-title {
+  color: #ffffff;
+  font-size: 1.15rem;
+  font-weight: 700;
+}
+
+.proc-step-desc {
+  color: rgba(255, 255, 255, 0.62);
+  font-size: 0.9rem;
+  line-height: 1.7;
+}
+
+.proc-step-details {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+  padding-top: 0.25rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  margin-top: 0.25rem;
+}
+
+.proc-step-detail {
+  display: flex;
   align-items: center;
   gap: 0.6rem;
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 0.83rem;
 }
 
-.proceso-tag {
-  color: var(--color-accent, #38bdf8);
-  font-size: 0.8rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 2.5px;
+.proc-detail-dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: #38bdf8;
+  flex-shrink: 0;
 }
 
-.proceso-title {
+/* ─── CTA ─── */
+.proc-cta {
+  background: rgba(56, 189, 248, 0.05);
+  border: 1px solid rgba(56, 189, 248, 0.15);
+  border-radius: 20px;
+  padding: 3rem 2.5rem;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.proc-cta-title {
   font-family: "Signika", sans-serif;
-  font-size: clamp(2rem, 5vw, 3rem);
+  font-size: clamp(1.5rem, 3vw, 2.2rem);
   font-weight: 700;
-  line-height: 1.15;
-  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+  color: #ffffff;
 }
 
-.proceso-subtitle {
-  font-size: 1.05rem;
-  opacity: 0.78;
-  max-width: 480px;
+.proc-cta-desc {
+  color: rgba(255, 255, 255, 0.58);
+  font-size: 1rem;
   line-height: 1.6;
 }
 
-/* ── Flow row (desktop) ──────────────────────────────────────────────────── */
-.proceso-flow {
-  display: flex;
-  flex-direction: row;
-  align-items: stretch;
-  width: 100%;
-}
-
-/* ── Step card ───────────────────────────────────────────────────────────── */
-.step-card {
-  flex: 1;
-  background: var(--color-surface);
-  border-radius: 18px;
-  padding: 2.25rem 1.5rem;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-  gap: 0.85rem;
-  position: relative;
-  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.25);
-  transition: transform 0.28s ease, box-shadow 0.28s ease;
-}
-
-.step-card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 18px 44px rgba(0, 0, 0, 0.35);
-}
-
-.step-number-badge {
-  position: absolute;
-  top: -14px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 28px;
-  height: 28px;
-  border-radius: 50%;
-  background: var(--color-primary);
-  color: #fff;
-  font-size: 0.8rem;
+.proc-cta-btn {
+  display: inline-block;
+  background: #38bdf8;
+  color: #030810;
   font-weight: 700;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  box-shadow: 0 2px 8px rgba(0, 86, 179, 0.45);
-}
-
-.step-icon-wrapper {
-  color: var(--color-primary);
-  background: var(--color-primary-bg-select-deep);
-  width: 68px;
-  height: 68px;
-  border-radius: 18px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  font-size: 0.95rem;
+  padding: 0.85rem 2.25rem;
+  border-radius: 9999px;
+  text-decoration: none;
   margin-top: 0.5rem;
-  transition: background 0.25s ease, color 0.25s ease;
+  transition: background 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
 }
 
-.step-card:hover .step-icon-wrapper {
-  background: var(--color-primary);
-  color: #fff;
+.proc-cta-btn:hover {
+  background: #7dd3fc;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 28px rgba(56, 189, 248, 0.35);
 }
 
-.step-heading {
-  color: var(--color-heading);
-  font-size: 1.1rem;
-  font-weight: 700;
-  margin: 0;
-}
-
-.step-desc {
-  color: var(--color-text);
-  font-size: 0.9rem;
-  line-height: 1.65;
-  margin: 0;
-  opacity: 0.85;
-}
-
-/* ── Connector arrow ─────────────────────────────────────────────────────── */
-.flow-connector {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
-  width: 52px;
-}
-
-.flow-connector svg {
-  width: 28px;
-  height: 28px;
-  color: rgba(255, 255, 255, 0.65);
-  animation: arrowPulse 1.6s ease-in-out infinite;
-  flex-shrink: 0;
-}
-
-@keyframes arrowPulse {
-  0%, 100% { transform: translateX(0);   opacity: 0.55; }
-  50%       { transform: translateX(5px); opacity: 1;    }
-}
-
-/* desktop arrow shown, mobile arrow hidden */
-.connector-mobile { display: none; }
-.connector-desktop { display: block; }
-
-/* ── Mobile ≤ 768px ──────────────────────────────────────────────────────── */
-@media (max-width: 768px) {
-  .proceso-container {
-    padding: 3.5rem 1.25rem;
-    align-items: flex-start;
+/* ─── Mobile ─── */
+@media (max-width: 600px) {
+  .proc-page {
+    padding: calc(var(--navbar-height, 64px) + 2.5rem) 1.25rem 5rem;
   }
 
-  .proceso-flow {
-    flex-direction: column;
-    align-items: center;
-    gap: 0;
+  .proc-step {
+    gap: 1.25rem;
   }
 
-  .step-card {
-    width: 100%;
-    max-width: 480px;
+  .proc-step-left {
+    width: 44px;
   }
 
-  /* swap arrow direction */
-  .connector-desktop { display: none; }
-  .connector-mobile  { display: block; }
-
-  .flow-connector {
-    width: auto;
+  .proc-step-num {
+    width: 44px;
     height: 44px;
+    font-size: 0.8rem;
   }
 
-  @keyframes arrowPulse {
-    0%, 100% { transform: translateY(0);   opacity: 0.55; }
-    50%       { transform: translateY(5px); opacity: 1;    }
+  .proc-step-card {
+    padding: 1.5rem 1.25rem;
+    margin-bottom: 1.25rem;
+  }
+
+  .proc-cta {
+    padding: 2rem 1.5rem;
   }
 }

@@ -1,67 +1,84 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
+import { useGSAP } from "@gsap/react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import MuxPlayer from "@mux/mux-player-react";
 import "./Video.css";
-import MuxPlayer from "@mux/mux-player-react"; 
+
+gsap.registerPlugin(ScrollTrigger);
 
 const Video = () => {
   const [videoSrc, setVideoSrc] = useState("/videos/customsoftdesktop.mp4");
+  const ref = useRef<HTMLElement>(null);
 
   useEffect(() => {
     const handleResize = () => {
-      if (window.innerWidth <= 768) {
-        setVideoSrc("/videos/customsoftmobile.mp4");
-      } else {
-        setVideoSrc("/videos/customsoftdesktop.mp4");
-      }
+      setVideoSrc(window.innerWidth <= 768 ? "/videos/customsoftmobile.mp4" : "/videos/customsoftdesktop.mp4");
     };
-
-    // Set initial source
     handleResize();
-
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
+  useGSAP(() => {
+    if (!ref.current) return;
+
+    gsap.from(ref.current.querySelector(".vdemo-heading"), {
+      y: 40, opacity: 0, duration: 0.7, ease: "power3.out",
+      scrollTrigger: { trigger: ref.current, start: "top 80%" },
+    });
+    gsap.from(ref.current.querySelector(".vdemo-player-wrap"), {
+      y: 50, opacity: 0, duration: 0.8, ease: "power3.out",
+      scrollTrigger: { trigger: ref.current.querySelector(".vdemo-player-wrap"), start: "top 85%" },
+    });
+    gsap.from(ref.current.querySelector(".vdemo-cta"), {
+      y: 30, opacity: 0, duration: 0.6, ease: "power2.out",
+      scrollTrigger: { trigger: ref.current.querySelector(".vdemo-cta"), start: "top 90%" },
+    });
+  }, { scope: ref });
+
   return (
-    <div className="video-container">
-      <div className="video-card">
-        <div className="video-content">
-          <h3 className="video-tag">¿Listo para Transformar tu Negocio?</h3>
-          <hr />
-          <p className="video-description">
-            Únete a cientos de empresas que han optimizado su flujo de trabajo con nuestro software.
+    <section ref={ref} className="vdemo-section">
+      <div className="vdemo-glow" aria-hidden="true" />
+
+      <div className="vdemo-inner">
+        <div className="vdemo-heading">
+          <span className="vdemo-label">Demo en vivo</span>
+          <h2 className="vdemo-title">¿Listo para transformar tu negocio?</h2>
+          <p className="vdemo-subtitle">
+            Mira cómo nuestro software optimiza el flujo de trabajo de empresas reales.
           </p>
+        </div>
 
-          <div 
-            className="video-wrapper"
-            style={videoSrc.includes("mobile") ? { aspectRatio: "9/16", maxWidth: "280px", margin: "0 auto" } : {}}
-          >
-             <MuxPlayer
-              playbackId=""
-              src={videoSrc}
-              metadata={{
-                video_title: "CustomSoft - Marketing Video",
-                viewer_user_id: "user-id-guest",
-              }}
-              primaryColor="#007bff"
-              secondaryColor="#FFFFFF"
-              style={{
-                width: "100%",
-                height: "100%",
-                borderRadius: "10px",
-                overflow: "hidden",
-              }}
-            />
-          </div>
+        <div
+          className="vdemo-player-wrap"
+          style={videoSrc.includes("mobile") ? { aspectRatio: "9/16", maxWidth: "300px" } : {}}
+        >
+          <MuxPlayer
+            playbackId=""
+            src={videoSrc}
+            metadata={{ video_title: "CustomSoft - Marketing Video", viewer_user_id: "guest" }}
+            primaryColor="#38bdf8"
+            secondaryColor="#ffffff"
+            style={{ width: "100%", height: "100%" }}
+          />
+        </div>
 
-          <button
-            className="video-cta"
-            onClick={() => window.open("https://wa.me/528124493708", "_blank")}
+        <div className="vdemo-cta">
+          <p className="vdemo-cta-text">
+            Agenda una llamada gratuita y cuéntame tu proyecto.
+          </p>
+          <a
+            href="https://wa.me/528118474519"
+            target="_blank"
+            rel="noreferrer"
+            className="vdemo-btn"
           >
-            ¡Comenzar Ahora!
-          </button>
+            Comenzar ahora
+          </a>
         </div>
       </div>
-    </div>
+    </section>
   );
 };
 

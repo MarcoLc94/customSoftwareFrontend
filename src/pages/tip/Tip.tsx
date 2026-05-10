@@ -1,49 +1,69 @@
+import { useRef } from "react";
+import { useGSAP } from "@gsap/react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { CheckCircle2, Code2, Rocket } from "lucide-react";
 import "./Tip.css";
 
-
-import { CheckCircle2, Code2, Rocket } from "lucide-react";
+gsap.registerPlugin(ScrollTrigger);
 
 const Tip = () => {
-  return (
-    <div className="tip-container">
-      <div className="tip-card hover-lift">
-        <div className="tip-content">
-          <div className="tip-header-group">
-            <h3 className="tip-tag">Sobre Desarrollo web & mobile</h3>
-            <h2 className="tip-headline">Impulsando tu Éxito Digital</h2>
-            <div className="tip-divider"></div>
-          </div>
-          
-          <div className="tips-mini">
-            <p className="tip-description">
-              Somos más que desarrolladores; somos tus socios estratégicos. Transformamos tus desafíos operativos en software elegante y eficiente.
-            </p>
+  const ref = useRef<HTMLElement>(null);
 
-            <div className="tip-features">
-              <div className="tip-feature">
-                <Code2 className="tip-icon" />
-                <span>Desarrollo de Código Limpio y Escalable</span>
-              </div>
-              <div className="tip-feature">
-                <CheckCircle2 className="tip-icon" />
-                <span>Soluciones Enfocadas en el ROI</span>
-              </div>
-              <div className="tip-feature">
-                <Rocket className="tip-icon" />
-                <span>Implementación Rápida y Soporte Continuo</span>
-              </div>
-            </div>
-          </div>
+  useGSAP(() => {
+    if (!ref.current) return;
+
+    gsap.from(ref.current.querySelector(".about-text"), {
+      x: -60, opacity: 0, duration: 0.9, ease: "power3.out",
+      scrollTrigger: { trigger: ref.current, start: "top 78%" },
+    });
+    gsap.from(ref.current.querySelector(".about-visual"), {
+      x: 60, opacity: 0, duration: 0.9, ease: "power3.out",
+      scrollTrigger: { trigger: ref.current, start: "top 78%" },
+    });
+  }, { scope: ref });
+
+  return (
+    <section ref={ref} className="about-section">
+      <div className="about-inner">
+        <div className="about-text">
+          <span className="about-label">Sobre Marco Dev</span>
+          <h2 className="about-title">
+            Desarrollo web & mobile<br />
+            <span className="about-title-accent">a otro nivel</span>
+          </h2>
+          <p className="about-desc">
+            Somos más que desarrolladores — somos tus socios estratégicos. Transformamos desafíos operativos en software elegante, eficiente y que hace crecer tu negocio.
+          </p>
+          <ul className="about-feats">
+            <li className="about-feat">
+              <Code2 className="about-feat-icon" />
+              <span>Código limpio, modular y escalable</span>
+            </li>
+            <li className="about-feat">
+              <CheckCircle2 className="about-feat-icon" />
+              <span>Soluciones enfocadas en ROI real</span>
+            </li>
+            <li className="about-feat">
+              <Rocket className="about-feat-icon" />
+              <span>Implementación rápida y soporte continuo</span>
+            </li>
+          </ul>
         </div>
-        <div className="tip-image">
+
+        <div className="about-visual">
           <img
             src="https://images.unsplash.com/photo-1573164713714-d95e436ab8d6?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
-            alt="Equipo de Desarrollo Colaborando"
-            className="tip-img"
+            alt="Desarrollo de software"
+            className="about-img"
           />
+          <div className="about-badge">
+            <span className="about-badge-num">5+</span>
+            <span className="about-badge-text">años de<br />experiencia</span>
+          </div>
         </div>
       </div>
-    </div>
+    </section>
   );
 };
 

@@ -1,62 +1,130 @@
-import { Fragment, useEffect } from "react";
-import { MessageSquare, Search, Code, CheckCircle, ChevronRight, ChevronDown } from "lucide-react";
+import { useEffect, useRef } from "react";
+import { useGSAP } from "@gsap/react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { MessageSquare, Search, PenTool, Code, Rocket } from "lucide-react";
 import "./Proceso.css";
+
+gsap.registerPlugin(ScrollTrigger);
 
 const steps = [
   {
-    icon: <MessageSquare size={36} />,
-    title: "Contacto Inicial",
-    desc: "Nos cuentas tu problema y objetivos. Agendamos una llamada para entender a fondo tus necesidades.",
+    Icon: MessageSquare,
+    num: "01",
+    title: "Consulta Inicial",
+    duration: "Día 1",
+    desc: "Me cuentas tu proyecto, objetivos y presupuesto. Agenda una llamada gratuita sin compromiso para entender a fondo lo que necesitas.",
+    details: ["Llamada de 30–60 minutos", "Sin costo ni compromiso", "Definición de requerimientos"],
   },
   {
-    icon: <Search size={36} />,
-    title: "Análisis y Estrategia",
-    desc: "Estudiamos la mejor solución técnica y diseñamos un plan de acción detallado para tu proyecto.",
+    Icon: Search,
+    num: "02",
+    title: "Análisis y Propuesta",
+    duration: "Días 2–4",
+    desc: "Estudio tu industria, procesos y competencia. Te entrego una propuesta detallada con alcance, tiempos y precio fijo. Sin sorpresas.",
+    details: ["Propuesta con precio fijo", "Cronograma detallado", "Revisión de alternativas"],
   },
   {
-    icon: <Code size={36} />,
+    Icon: PenTool,
+    num: "03",
+    title: "Diseño y Prototipo",
+    duration: "Semana 1",
+    desc: "Diseñamos la interfaz visual y la experiencia de usuario. Apruebas cada pantalla antes de escribir una línea de código.",
+    details: ["Wireframes interactivos", "Diseño responsivo", "Revisiones incluidas"],
+  },
+  {
+    Icon: Code,
+    num: "04",
     title: "Desarrollo Ágil",
-    desc: "Construimos tu software en iteraciones, manteniéndote informado y permitiendo feedback constante.",
+    duration: "Semanas 2–N",
+    desc: "Construyo tu software en iteraciones cortas. Recibes demos regulares y puedes solicitar ajustes en cada etapa.",
+    details: ["Demos semanales", "Feedback constante", "Código limpio y documentado"],
   },
   {
-    icon: <CheckCircle size={36} />,
+    Icon: Rocket,
+    num: "05",
     title: "Entrega y Soporte",
-    desc: "Implementamos la solución final y brindamos soporte continuo para que tu negocio siga creciendo.",
+    duration: "Final",
+    desc: "Lanzamiento, configuración en producción, capacitación para tu equipo y soporte post-entrega. Tu inversión protegida.",
+    details: ["Deploy y configuración", "Capacitación incluida", "Soporte continuo"],
   },
 ];
 
 const Proceso = () => {
+  const ref = useRef<HTMLDivElement>(null);
+
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
 
+  useGSAP(() => {
+    if (!ref.current) return;
+
+    gsap.from(ref.current.querySelector(".proc-header"), {
+      y: 50, opacity: 0, duration: 0.8, ease: "power3.out",
+    });
+    gsap.from(ref.current.querySelectorAll(".proc-step"), {
+      x: -40, opacity: 0, stagger: 0.15, duration: 0.65, ease: "power3.out",
+      delay: 0.3,
+    });
+  }, { scope: ref });
+
   return (
-    <div className="proceso-container">
-      <div className="proceso-content">
-        <div className="proceso-header">
-          <span className="proceso-tag">Metodología</span>
-          <h1 className="proceso-title">Nuestro Flujo de Trabajo</h1>
-          <p className="proceso-subtitle">De la idea a la realidad en 4 pasos sencillos.</p>
+    <div ref={ref} className="proc-page">
+      <div className="proc-bg" aria-hidden="true">
+        <div className="proc-orb proc-orb--1" />
+        <div className="proc-orb proc-orb--2" />
+      </div>
+
+      <div className="proc-inner">
+        <div className="proc-header">
+          <span className="proc-label">Metodología</span>
+          <h1 className="proc-title">Nuestro proceso</h1>
+          <p className="proc-subtitle">
+            Un método ágil, transparente y orientado a resultados. De la idea al producto en 5 etapas claras.
+          </p>
         </div>
 
-        <div className="proceso-flow">
-          {steps.map((step, index) => (
-            <Fragment key={index}>
-              <div className="step-card">
-                <div className="step-number-badge">{index + 1}</div>
-                <div className="step-icon-wrapper">{step.icon}</div>
-                <h3 className="step-heading">{step.title}</h3>
-                <p className="step-desc">{step.desc}</p>
+        <div className="proc-timeline">
+          {steps.map(({ Icon, num, title, duration, desc, details }, i) => (
+            <div key={num} className="proc-step">
+              <div className="proc-step-left">
+                <div className="proc-step-num">{num}</div>
+                {i < steps.length - 1 && <div className="proc-step-line" />}
               </div>
-
-              {index < steps.length - 1 && (
-                <div className="flow-connector">
-                  <ChevronRight className="connector-desktop" />
-                  <ChevronDown className="connector-mobile" />
+              <div className="proc-step-card">
+                <div className="proc-step-card-top">
+                  <div className="proc-step-icon">
+                    <Icon className="proc-icon-svg" />
+                  </div>
+                  <span className="proc-step-duration">{duration}</span>
                 </div>
-              )}
-            </Fragment>
+                <h3 className="proc-step-title">{title}</h3>
+                <p className="proc-step-desc">{desc}</p>
+                <ul className="proc-step-details">
+                  {details.map((d) => (
+                    <li key={d} className="proc-step-detail">
+                      <span className="proc-detail-dot" aria-hidden="true" />
+                      {d}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
           ))}
+        </div>
+
+        <div className="proc-cta">
+          <h2 className="proc-cta-title">¿Listo para comenzar?</h2>
+          <p className="proc-cta-desc">El primer paso es una llamada gratuita. Sin compromiso.</p>
+          <a
+            href="https://wa.me/528118474519"
+            target="_blank"
+            rel="noreferrer"
+            className="proc-cta-btn"
+          >
+            Agendar llamada gratuita
+          </a>
         </div>
       </div>
     </div>

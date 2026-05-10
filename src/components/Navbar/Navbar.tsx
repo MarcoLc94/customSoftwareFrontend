@@ -7,7 +7,7 @@ import "./Navbar.css";
 
 gsap.registerPlugin(useGSAP);
 
-const LOGO_LETTERS = "Desarrollo Web & Mobile".split("");
+const LOGO_LETTERS = "Marco Dev".split("");
 
 const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
@@ -150,7 +150,7 @@ const Navbar = () => {
       });
     });
 
-    // Idle loop — starts 3.8s after entrance, fires every 3s
+    // Idle loop — fires every 8s
     const scheduleIdle = (delay: number) => {
       idleCallRef.current = gsap.delayedCall(delay, () => {
         if (window.innerWidth > 992) {
@@ -208,13 +208,17 @@ const Navbar = () => {
     <nav ref={navRef} className={`navbar ${scrolled ? "scrolled" : ""}`}>
       <div className="navbar-logo">
         <Link to="/">
-          <span className="logo-text">
-            {LOGO_LETTERS.map((char, i) => (
-              <span key={i} className="logo-letter">
-                {char === " " ? " " : char}
-              </span>
-            ))}
-          </span>
+          <img src="/images/logo.png" alt="Marco Dev" className="navbar-logo-img" />
+          <div className="logo-text-group">
+            <span className="logo-text">
+              {LOGO_LETTERS.map((char, i) => (
+                <span key={i} className="logo-letter">
+                  {char === " " ? " " : char}
+                </span>
+              ))}
+            </span>
+            <span className="logo-subtitle">Desarrollo web, Android &amp; IOS</span>
+          </div>
         </Link>
       </div>
 

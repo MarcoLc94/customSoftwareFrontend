@@ -1,70 +1,65 @@
+import { useRef } from "react";
+import { useGSAP } from "@gsap/react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { MessageCircle, PenTool, Code, Rocket } from "lucide-react";
 import "./How.css";
 
-import "./How.css";
-import { MessageCircle, PenTool, Code, Rocket } from "lucide-react";
+gsap.registerPlugin(ScrollTrigger);
+
+const steps = [
+  { Icon: MessageCircle, num: "01", title: "Consulta",     desc: "Entendemos tus desafíos, definimos objetivos y planificamos la solución ideal." },
+  { Icon: PenTool,       num: "02", title: "Diseño",       desc: "Prototipamos una interfaz visual atractiva, funcional y validada contigo." },
+  { Icon: Code,          num: "03", title: "Desarrollo",   desc: "Construimos con código limpio, buenas prácticas y revisiones constantes." },
+  { Icon: Rocket,        num: "04", title: "Lanzamiento",  desc: "Despliegue exitoso, capacitación y soporte continuo garantizado." },
+];
 
 const How = () => {
+  const ref = useRef<HTMLElement>(null);
+
+  useGSAP(() => {
+    if (!ref.current) return;
+
+    gsap.from(ref.current.querySelector(".process-heading"), {
+      y: 40, opacity: 0, duration: 0.7, ease: "power3.out",
+      scrollTrigger: { trigger: ref.current, start: "top 80%" },
+    });
+    gsap.from(ref.current.querySelectorAll(".process-step"), {
+      y: 40, opacity: 0, stagger: 0.14, duration: 0.6, ease: "power3.out",
+      scrollTrigger: { trigger: ref.current.querySelector(".process-steps"), start: "top 82%" },
+    });
+  }, { scope: ref });
+
   return (
-    <div className="how-container">
-      <div className="how-card hover-lift">
-        <div className="how-content">
-          <div className="how-header-group">
-            <h3 className="how-tag">Nuestro Proceso</h3>
-            <h2 className="how-headline">De la Idea a la Realidad</h2>
-            <div className="how-divider"></div>
-          </div>
-
-          <div className="steps-container">
-            <div className="step-item">
-              <div className="step-icon-wrapper">
-                <MessageCircle className="step-icon" />
-              </div>
-              <div className="step-details">
-                <h4 className="step-title">Consulta</h4>
-                <p className="step-text">Entendemos tus desafíos y definimos los objetivos.</p>
-              </div>
-            </div>
-
-            <div className="step-item">
-              <div className="step-icon-wrapper">
-                <PenTool className="step-icon" />
-              </div>
-              <div className="step-details">
-                <h4 className="step-title">Diseño</h4>
-                <p className="step-text">Prototipamos una solución visual atractiva y funcional.</p>
-              </div>
-            </div>
-
-            <div className="step-item">
-              <div className="step-icon-wrapper">
-                <Code className="step-icon" />
-              </div>
-              <div className="step-details">
-                <h4 className="step-title">Desarrollo</h4>
-                <p className="step-text">Construimos el software con las mejores prácticas.</p>
-              </div>
-            </div>
-
-            <div className="step-item">
-              <div className="step-icon-wrapper">
-                <Rocket className="step-icon" />
-              </div>
-              <div className="step-details">
-                <h4 className="step-title">Lanzamiento</h4>
-                <p className="step-text">Despliegue exitoso y soporte continuo garantizado.</p>
-              </div>
-            </div>
-          </div>
+    <section ref={ref} className="process-section">
+      <div className="process-inner">
+        <div className="process-heading">
+          <span className="process-label">Nuestro proceso</span>
+          <h2 className="process-title">De la idea a la realidad</h2>
+          <p className="process-subtitle">
+            Un método ágil, transparente y orientado a resultados en 4 pasos.
+          </p>
         </div>
-        <div className="how-image">
-          <img
-            src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
-            alt="Equipo Colaborando"
-            className="how-img"
-          />
+
+        <div className="process-steps">
+          <div className="process-connector" aria-hidden="true" />
+          {steps.map(({ Icon, num, title, desc }) => (
+            <div key={num} className="process-step">
+              <div className="process-step-top">
+                <div className="process-step-num">{num}</div>
+              </div>
+              <div className="process-step-body">
+                <div className="process-step-icon">
+                  <Icon className="process-icon-svg" />
+                </div>
+                <h3 className="process-step-title">{title}</h3>
+                <p className="process-step-desc">{desc}</p>
+              </div>
+            </div>
+          ))}
         </div>
       </div>
-    </div>
+    </section>
   );
 };
 

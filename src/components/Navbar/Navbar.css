@@ -6,20 +6,22 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0 1.5rem;
-  background-color: rgba(0, 0, 0, 0.25);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
+  padding: 0 1rem;
+  background-color: transparent;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
   height: var(--navbar-height, 64px);
-  transition: background-color 0.3s ease, box-shadow 0.3s ease;
-  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.08);
+  transition: background-color 0.4s ease, box-shadow 0.4s ease, backdrop-filter 0.4s ease;
+  box-shadow: none;
   z-index: 2000;
   box-sizing: border-box;
 }
 
 .navbar.scrolled {
-  background-color: rgba(56, 189, 248, 0.25);
-  box-shadow: 0 2px 16px rgba(0, 0, 0, 0.35);
+  background-color: rgba(10, 22, 40, 0.75);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.08), 0 2px 16px rgba(0, 0, 0, 0.35);
 }
 
 /* Logo */
@@ -32,12 +34,9 @@
 .navbar-logo a {
   text-decoration: none;
   color: #ffffff;
-  font-weight: 700;
-  font-size: 1.35rem;
   display: flex;
+  flex-direction: row;
   align-items: center;
-  gap: 0.4rem;
-  letter-spacing: -0.01em;
   transition: opacity 0.2s ease;
 }
 
@@ -45,12 +44,40 @@
   opacity: 0.85;
 }
 
+.navbar-logo-img {
+  width: 100px;
+  height: 100px;
+  padding: 5px 0px 5px 0px;
+  object-fit: contain;
+  flex-shrink: 0;
+}
+
+.logo-text-group {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+}
+
 .logo-text {
   font-family: Signika, sans-serif;
+  font-weight: 700;
+  font-size: 1.35rem;
+  letter-spacing: -0.01em;
+  line-height: 1.1;
 }
 
 .logo-letter {
   display: inline-block;
+}
+
+.logo-subtitle {
+  font-family: Inter, sans-serif;
+  font-weight: 400;
+  font-size: 0.8rem;
+  letter-spacing: 0.06em;
+  color: rgba(255, 255, 255, 0.55);
+  line-height: 1;
 }
 
 /* Nav links (desktop) */
@@ -265,7 +292,12 @@
 }
 
 @media (max-width: 576px) {
-  .navbar-logo a {
+  .logo-text {
     font-size: 1.1rem;
+  }
+
+  .navbar-logo-img {
+    width: 100px;
+    height: 100px;
   }
 }

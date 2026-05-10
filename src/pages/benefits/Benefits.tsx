@@ -1,70 +1,60 @@
+import { useRef } from "react";
+import { useGSAP } from "@gsap/react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { BoxSelect, Gauge, CloudLightning, TrendingUp } from "lucide-react";
 import "./Benefits.css";
 
-import "./Benefits.css";
-import { BoxSelect, Gauge, CloudLightning, TrendingUp } from "lucide-react";
+gsap.registerPlugin(ScrollTrigger);
+
+const items = [
+  { Icon: BoxSelect,     num: "01", title: "A Tu Medida",       desc: "Software diseñado exactamente para tus procesos únicos, sin concesiones ni funciones innecesarias." },
+  { Icon: Gauge,         num: "02", title: "Eficiencia",         desc: "Automatiza tareas rutinarias, reduce errores humanos y recupera horas valiosas de trabajo." },
+  { Icon: CloudLightning,num: "03", title: "Tecnología Moderna", desc: "Stack rápido, seguro y actualizado para estar un paso adelante de tu competencia." },
+  { Icon: TrendingUp,    num: "04", title: "Escalabilidad",      desc: "Sistemas construidos para crecer contigo sin requerir reconstrucciones costosas en el futuro." },
+];
 
 const Benefits = () => {
+  const ref = useRef<HTMLElement>(null);
+
+  useGSAP(() => {
+    if (!ref.current) return;
+
+    gsap.from(ref.current.querySelector(".bene-heading"), {
+      y: 40, opacity: 0, duration: 0.7, ease: "power3.out",
+      scrollTrigger: { trigger: ref.current, start: "top 80%" },
+    });
+    gsap.from(ref.current.querySelectorAll(".bene-item"), {
+      y: 50, opacity: 0, scale: 0.96, stagger: 0.12, duration: 0.6, ease: "back.out(1.4)",
+      scrollTrigger: { trigger: ref.current.querySelector(".bene-grid"), start: "top 83%" },
+    });
+  }, { scope: ref });
+
   return (
-    <div className="benefits-container">
-      <div className="benefits-card hover-lift">
-        <div className="benefits-image">
-          <img
-            src="https://images.unsplash.com/photo-1551434678-e076c223a692?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
-            alt="Crecimiento de Negocio"
-            className="benefits-img"
-          />
+    <section ref={ref} className="bene-section">
+      <div className="bene-inner">
+        <div className="bene-heading">
+          <span className="bene-label">¿Por qué elegirnos?</span>
+          <h2 className="bene-title">Soluciones que Escalan</h2>
+          <p className="bene-subtitle">
+            Cada decisión de diseño y código está orientada a hacer crecer tu negocio.
+          </p>
         </div>
-        <div className="benefits-content">
-          <div className="benefits-header-group">
-            <h3 className="benefits-tag">¿Por Qué Elegirnos?</h3>
-            <h2 className="benefits-headline">Soluciones que Escalan</h2>
-            <div className="benefits-divider"></div>
-          </div>
 
-          <div className="benefits-list">
-            <div className="benefit-item">
-              <div className="benefit-icon-wrapper">
-                <BoxSelect className="benefit-icon" />
+        <div className="bene-grid">
+          {items.map(({ Icon, num, title, desc }) => (
+            <div key={num} className="bene-item">
+              <span className="bene-item-num" aria-hidden="true">{num}</span>
+              <div className="bene-item-icon">
+                <Icon className="bene-icon-svg" />
               </div>
-              <div className="benefit-details">
-                <h4 className="benefit-title">A Tu Medida</h4>
-                <p className="benefit-text">Software diseñado para tus procesos únicos.</p>
-              </div>
+              <h3 className="bene-item-title">{title}</h3>
+              <p className="bene-item-desc">{desc}</p>
             </div>
-
-            <div className="benefit-item">
-              <div className="benefit-icon-wrapper">
-                <Gauge className="benefit-icon" />
-              </div>
-              <div className="benefit-details">
-                <h4 className="benefit-title">Eficiencia</h4>
-                <p className="benefit-text">Automatiza tareas rutinarias y ahorra tiempo.</p>
-              </div>
-            </div>
-
-            <div className="benefit-item">
-              <div className="benefit-icon-wrapper">
-                <CloudLightning className="benefit-icon" />
-              </div>
-              <div className="benefit-details">
-                <h4 className="benefit-title">Tecnología Moderna</h4>
-                <p className="benefit-text">Stack tecnológico rápido y seguro.</p>
-              </div>
-            </div>
-
-            <div className="benefit-item">
-              <div className="benefit-icon-wrapper">
-                <TrendingUp className="benefit-icon" />
-              </div>
-              <div className="benefit-details">
-                <h4 className="benefit-title">Escalabilidad</h4>
-                <p className="benefit-text">Sistemas listos para crecer contigo.</p>
-              </div>
-            </div>
-          </div>
+          ))}
         </div>
       </div>
-    </div>
+    </section>
   );
 };
 
