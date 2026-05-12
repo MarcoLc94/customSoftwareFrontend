@@ -3,7 +3,7 @@
   overflow: hidden;
   min-height: 100vh;
   padding: calc(var(--navbar-height, 64px) + 4rem) 2rem 7rem;
-  background: linear-gradient(160deg, #04091a 0%, #070f20 45%, #09152a 100%);
+  background: linear-gradient(160deg, var(--color-section-bg) 0%, var(--color-section-bg) 45%, var(--color-section-bg-alt) 100%);
 }
 
 /* ─── Background ─── */
@@ -62,21 +62,21 @@
   font-weight: 600;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: #38bdf8;
+  color: var(--color-accent);
 }
 
 .proc-title {
   font-family: "Signika", sans-serif;
   font-size: clamp(2.4rem, 6vw, 4rem);
   font-weight: 700;
-  color: #ffffff;
+  color: var(--color-on-surface);
   line-height: 1.1;
   letter-spacing: -0.025em;
 }
 
 .proc-subtitle {
   font-size: clamp(1rem, 2vw, 1.15rem);
-  color: rgba(255, 255, 255, 0.6);
+  color: var(--color-on-surface-muted);
   max-width: 520px;
   line-height: 1.7;
 }
@@ -108,9 +108,9 @@
   width: 56px;
   height: 56px;
   border-radius: 50%;
-  background: #070f20;
-  border: 2px solid #38bdf8;
-  color: #38bdf8;
+  background: var(--color-section-bg);
+  border: 2px solid var(--color-accent);
+  color: var(--color-accent);
   font-family: "Signika", sans-serif;
   font-size: 0.9rem;
   font-weight: 700;
@@ -139,8 +139,8 @@
 /* Right column: card */
 .proc-step-card {
   flex: 1;
-  background: rgba(255, 255, 255, 0.04);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: var(--color-glass-bg);
+  border: 1px solid var(--color-glass-border);
   border-radius: 18px;
   padding: 1.75rem 2rem;
   margin-bottom: 1.5rem;
@@ -175,7 +175,7 @@
 .proc-icon-svg {
   width: 20px;
   height: 20px;
-  color: #38bdf8;
+  color: var(--color-accent);
 }
 
 .proc-step-duration {
@@ -190,13 +190,13 @@
 }
 
 .proc-step-title {
-  color: #ffffff;
+  color: var(--color-on-surface);
   font-size: 1.15rem;
   font-weight: 700;
 }
 
 .proc-step-desc {
-  color: rgba(255, 255, 255, 0.62);
+  color: var(--color-on-surface-muted);
   font-size: 0.9rem;
   line-height: 1.7;
 }
@@ -207,7 +207,7 @@
   flex-direction: column;
   gap: 0.45rem;
   padding-top: 0.25rem;
-  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  border-top: 1px solid var(--color-glass-border);
   margin-top: 0.25rem;
 }
 
@@ -215,7 +215,7 @@
   display: flex;
   align-items: center;
   gap: 0.6rem;
-  color: rgba(255, 255, 255, 0.5);
+  color: var(--color-on-surface-muted);
   font-size: 0.83rem;
 }
 
@@ -223,7 +223,7 @@
   width: 5px;
   height: 5px;
   border-radius: 50%;
-  background: #38bdf8;
+  background: var(--color-accent);
   flex-shrink: 0;
 }
 
@@ -244,19 +244,19 @@
   font-family: "Signika", sans-serif;
   font-size: clamp(1.5rem, 3vw, 2.2rem);
   font-weight: 700;
-  color: #ffffff;
+  color: var(--color-on-surface);
 }
 
 .proc-cta-desc {
-  color: rgba(255, 255, 255, 0.58);
+  color: var(--color-on-surface-muted);
   font-size: 1rem;
   line-height: 1.6;
 }
 
 .proc-cta-btn {
   display: inline-block;
-  background: #38bdf8;
-  color: #030810;
+  background: var(--color-accent);
+  color: var(--color-section-dark);
   font-weight: 700;
   font-size: 0.95rem;
   padding: 0.85rem 2.25rem;

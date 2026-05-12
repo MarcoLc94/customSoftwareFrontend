@@ -1,5 +1,5 @@
 .process-section {
-  background: linear-gradient(180deg, #0a1832 0%, #070e1f 100%);
+  background: linear-gradient(180deg, var(--color-section-bg-alt) 0%, var(--color-section-bg) 100%);
   padding: 7rem 2rem;
   position: relative;
   overflow: hidden;
@@ -40,21 +40,21 @@
   font-weight: 600;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: #38bdf8;
+  color: var(--color-accent);
 }
 
 .process-title {
   font-family: "Signika", sans-serif;
   font-size: clamp(2rem, 5vw, 3rem);
   font-weight: 700;
-  color: #ffffff;
+  color: var(--color-on-surface);
   line-height: 1.1;
   letter-spacing: -0.02em;
 }
 
 .process-subtitle {
   font-size: clamp(0.95rem, 1.8vw, 1.05rem);
-  color: rgba(255, 255, 255, 0.6);
+  color: var(--color-on-surface-muted);
   line-height: 1.65;
 }
 
@@ -99,9 +99,9 @@
   width: 56px;
   height: 56px;
   border-radius: 50%;
-  background: #070e1f;
-  border: 2px solid #38bdf8;
-  color: #38bdf8;
+  background: var(--color-section-bg);
+  border: 2px solid var(--color-accent);
+  color: var(--color-accent);
   font-family: "Signika", sans-serif;
   font-size: 0.95rem;
   font-weight: 700;
@@ -146,17 +146,17 @@
 .process-icon-svg {
   width: 22px;
   height: 22px;
-  color: #38bdf8;
+  color: var(--color-accent);
 }
 
 .process-step-title {
-  color: #ffffff;
+  color: var(--color-on-surface);
   font-size: 1.05rem;
   font-weight: 700;
 }
 
 .process-step-desc {
-  color: rgba(255, 255, 255, 0.58);
+  color: var(--color-on-surface-muted);
   font-size: 0.855rem;
   line-height: 1.6;
   max-width: 200px;

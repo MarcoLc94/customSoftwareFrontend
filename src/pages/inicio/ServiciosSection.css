@@ -1,6 +1,6 @@
 /* ─── Section ─── */
 .ss-section {
-  background: linear-gradient(180deg, #09152a 0%, #0b1a34 100%);
+  background: linear-gradient(180deg, var(--color-section-bg-alt) 0%, var(--color-section-bg-alt) 100%);
   padding: 6rem 2rem;
   position: relative;
   overflow: hidden;
@@ -47,14 +47,14 @@
   font-family: "Signika", sans-serif;
   font-weight: 700;
   font-size: clamp(2rem, 5vw, 3rem);
-  color: #ffffff;
+  color: var(--color-on-surface);
   line-height: 1.1;
   letter-spacing: -0.02em;
 }
 
 .ss-subtitle {
   font-size: clamp(0.95rem, 1.8vw, 1.1rem);
-  color: rgba(255, 255, 255, 0.6);
+  color: var(--color-on-surface-muted);
   max-width: 520px;
   line-height: 1.65;
 }
@@ -69,8 +69,8 @@
 
 /* ─── Card ─── */
 .ss-card {
-  background: rgba(255, 255, 255, 0.04);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: var(--color-glass-bg);
+  border: 1px solid var(--color-glass-border);
   border-radius: 18px;
   padding: 2rem 1.5rem;
   display: flex;
@@ -115,14 +115,14 @@
 
 /* ─── Text ─── */
 .ss-card-title {
-  color: #ffffff;
+  color: var(--color-on-surface);
   font-size: 1rem;
   font-weight: 700;
   line-height: 1.2;
 }
 
 .ss-card-desc {
-  color: rgba(255, 255, 255, 0.58);
+  color: var(--color-on-surface-muted);
   font-size: 0.875rem;
   line-height: 1.6;
 }

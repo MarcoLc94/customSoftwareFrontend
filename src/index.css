@@ -16,12 +16,20 @@ body::-webkit-scrollbar {
 }
 
 body {
-  background-image: linear-gradient(rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.45)),
-    url("/softwarebackground.jpg");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
   background-attachment: fixed;
+}
+
+body[data-theme="dark"] {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0.55)),
+    url("/softwarebackground.jpg");
+}
+
+body[data-theme="light"] {
+  background-image: linear-gradient(rgba(185, 205, 228, 0.91), rgba(185, 205, 228, 0.91)),
+    url("/softwarebackground.jpg");
 }
 
 * {
@@ -44,11 +52,11 @@ body {
 
 [data-theme="light"] {
   /* Base */
-  --color-background: #f8f9fae3;
-  --color-text: #334155;
-  --color-heading: #1e293b;
-  --color-surface: #ffffff;
-  --color-border: #e2e8f0;
+  --color-background: #b9cde4;
+  --color-text: #0a1628;
+  --color-heading: #0a1628;
+  --color-surface: rgba(255, 255, 255, 0.65);
+  --color-border: rgba(255, 255, 255, 0.55);
 
   /* Primarios (azules) */
   --color-primary: #0056b3;
@@ -88,6 +96,19 @@ body {
   /* Transiciones */
   --transition-speed: 0.3s;
   --border-radius: 0.5rem;
+
+  /* Section backgrounds */
+  --color-page-bg: #b9cde4;
+  --color-section-bg: #adc3dd;
+  --color-section-bg-alt: #9fb8d5;
+  --color-section-dark: #c8d9eb;
+  --color-on-surface: #0a1628;
+  --color-on-surface-muted: #1e3a5f;
+  --color-glass-bg: rgba(255, 255, 255, 0.48);
+  --color-glass-border: rgba(255, 255, 255, 0.70);
+  --color-card-glow: rgba(56, 189, 248, 0.15);
+  --navbar-scrolled-bg: rgba(175, 200, 225, 0.92);
+  --navbar-text: #0a1628;
 }
 
 [data-theme="dark"] {
@@ -136,6 +157,19 @@ body {
   /* Transiciones */
   --transition-speed: 0.3s;
   --border-radius: 0.5rem;
+
+  /* Section backgrounds */
+  --color-page-bg: #04091a;
+  --color-section-bg: #070f20;
+  --color-section-bg-alt: #09152a;
+  --color-section-dark: #040810;
+  --color-on-surface: #f1f5f9;
+  --color-on-surface-muted: rgba(255, 255, 255, 0.65);
+  --color-glass-bg: rgba(255, 255, 255, 0.04);
+  --color-glass-border: rgba(255, 255, 255, 0.08);
+  --color-card-glow: rgba(56, 189, 248, 0.08);
+  --navbar-scrolled-bg: rgba(10, 22, 40, 0.75);
+  --navbar-text: #ffffff;
 }
 
 /* Scrollbar WebKit (Chrome, Safari, Edge) */

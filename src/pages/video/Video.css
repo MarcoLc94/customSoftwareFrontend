@@ -1,5 +1,5 @@
 .vdemo-section {
-  background: #040810;
+  background: var(--color-section-dark);
   padding: 7rem 2rem;
   position: relative;
   overflow: hidden;
@@ -54,21 +54,21 @@
   font-weight: 600;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: #38bdf8;
+  color: var(--color-accent);
 }
 
 .vdemo-title {
   font-family: "Signika", sans-serif;
   font-size: clamp(1.8rem, 4vw, 2.8rem);
   font-weight: 700;
-  color: #ffffff;
+  color: var(--color-on-surface);
   line-height: 1.15;
   letter-spacing: -0.02em;
 }
 
 .vdemo-subtitle {
   font-size: clamp(0.95rem, 1.8vw, 1.05rem);
-  color: rgba(255, 255, 255, 0.58);
+  color: var(--color-on-surface-muted);
   line-height: 1.65;
   max-width: 520px;
 }
@@ -92,15 +92,15 @@
 }
 
 .vdemo-cta-text {
-  color: rgba(255, 255, 255, 0.6);
+  color: var(--color-on-surface-muted);
   font-size: 1rem;
   line-height: 1.6;
 }
 
 .vdemo-btn {
   display: inline-block;
-  background: #38bdf8;
-  color: #030810;
+  background: var(--color-accent);
+  color: var(--color-section-dark);
   font-weight: 700;
   font-size: 0.95rem;
   padding: 0.85rem 2.25rem;

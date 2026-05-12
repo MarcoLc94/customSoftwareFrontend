@@ -3,7 +3,7 @@
   overflow: hidden;
   min-height: 100vh;
   padding: calc(var(--navbar-height, 64px) + 4rem) 2rem 7rem;
-  background: linear-gradient(160deg, #04091a 0%, #070f20 45%, #09152a 100%);
+  background: linear-gradient(160deg, var(--color-section-bg) 0%, var(--color-section-bg) 45%, var(--color-section-bg-alt) 100%);
 }
 
 /* ─── Background ─── */
@@ -61,20 +61,20 @@
   font-weight: 600;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: #38bdf8;
+  color: var(--color-accent);
 }
 
 .contact-title {
   font-family: "Signika", sans-serif;
   font-size: clamp(2.4rem, 5vw, 3.8rem);
   font-weight: 700;
-  color: #ffffff;
+  color: var(--color-on-surface);
   line-height: 1.1;
   letter-spacing: -0.025em;
 }
 
 .contact-desc {
-  color: rgba(255, 255, 255, 0.62);
+  color: var(--color-on-surface-muted);
   font-size: clamp(0.95rem, 1.6vw, 1.05rem);
   line-height: 1.75;
   max-width: 440px;
@@ -92,8 +92,8 @@
   display: flex;
   align-items: center;
   gap: 1rem;
-  background: rgba(255, 255, 255, 0.04);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: var(--color-glass-bg);
+  border: 1px solid var(--color-glass-border);
   border-radius: 14px;
   padding: 1rem 1.25rem;
   text-decoration: none;
@@ -125,7 +125,7 @@
 .contact-icon-svg {
   width: 20px;
   height: 20px;
-  color: #38bdf8;
+  color: var(--color-accent);
 }
 
 .contact-method-body {
@@ -139,13 +139,13 @@
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.07em;
-  color: rgba(255, 255, 255, 0.38);
+  color: var(--color-on-surface-muted);
 }
 
 .contact-method-value {
   font-size: 0.95rem;
   font-weight: 500;
-  color: rgba(255, 255, 255, 0.85);
+  color: var(--color-on-surface);
 }
 
 /* ─── WhatsApp CTA ─── */
@@ -183,7 +183,7 @@
   top: calc(var(--navbar-height, 64px) + 2rem);
   border-radius: 20px;
   overflow: hidden;
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  border: 1px solid var(--color-glass-border);
   box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
   height: 520px;
 }

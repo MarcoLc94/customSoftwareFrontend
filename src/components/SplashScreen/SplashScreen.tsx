@@ -1,104 +1,139 @@
-import { useRef } from "react";
+import { useRef, useEffect } from "react";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import "./SplashScreen.css";
 
 interface SplashScreenProps {
   onComplete: () => void;
+  onExitStart?: () => void;
 }
 
-const RADIUS = 44;
-const CIRCUMFERENCE = 2 * Math.PI * RADIUS;
+const TOTAL_FRAMES     = 200;
+const START_FRAME      = 29;
+const FADE_START_FRAME = 160;
+const FRAME_DURATION   = 1000 / 77; // 10% faster
+const LOGO_HOLD_SEC    = 0.68;      // 15% faster
 
-const SplashScreen = ({ onComplete }: SplashScreenProps) => {
-  const containerRef     = useRef<HTMLDivElement>(null);
-  const brandRef         = useRef<HTMLDivElement>(null);
-  const sloganRef        = useRef<HTMLParagraphElement>(null);
-  const buttonWrapperRef = useRef<HTMLDivElement>(null);
-  const ringRef          = useRef<SVGCircleElement>(null);
-  const clickHandlerRef  = useRef<(() => void) | null>(null);
+const SplashScreen = ({ onComplete, onExitStart }: SplashScreenProps) => {
+  const containerRef       = useRef<HTMLDivElement>(null);
+  const canvasRef          = useRef<HTMLCanvasElement>(null);
+  const contentRef         = useRef<HTMLDivElement>(null);
+  const onVideoCompleteRef = useRef<(() => void) | null>(null);
 
+  // ── Frame playback ────────────────────────────────────────────────────────
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+    const ctx = canvas.getContext("2d");
+    if (!ctx) return;
+
+    canvas.width  = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+    const images: HTMLImageElement[] = [];
+    let loaded = 0;
+    let rafId = 0;
+    let currentFrame = START_FRAME;
+    let lastTime = 0;
+    let fadingStarted = false;
+
+    function drawCover(img: HTMLImageElement) {
+      const cw = canvas!.width;
+      const ch = canvas!.height;
+      const scale = Math.max(cw / img.naturalWidth, ch / img.naturalHeight);
+      const sw = img.naturalWidth  * scale;
+      const sh = img.naturalHeight * scale;
+      ctx!.drawImage(img, (cw - sw) / 2, (ch - sh) / 2, sw, sh);
+    }
+
+    function startPlayback() {
+      function tick(now: number) {
+        if (now - lastTime >= FRAME_DURATION) {
+          lastTime = now;
+          drawCover(images[currentFrame]);
+          currentFrame++;
+
+          if (currentFrame >= FADE_START_FRAME && !fadingStarted) {
+            fadingStarted = true;
+            const fadeDuration = (TOTAL_FRAMES - FADE_START_FRAME) * FRAME_DURATION / 1000;
+            gsap.to(canvas, {
+              opacity: 0,
+              duration: fadeDuration,
+              ease: "power2.in",
+              onComplete: () => onVideoCompleteRef.current?.(),
+            });
+          }
+
+          if (currentFrame >= TOTAL_FRAMES) return;
+        }
+        rafId = requestAnimationFrame(tick);
+      }
+      rafId = requestAnimationFrame(tick);
+    }
+
+    for (let i = 1; i <= TOTAL_FRAMES; i++) {
+      const img = new Image();
+      img.src = `/frames_splash/frame_${String(i).padStart(4, "0")}.jpg`;
+      img.onload = () => {
+        loaded++;
+        if (loaded === TOTAL_FRAMES) startPlayback();
+      };
+      img.onerror = () => {
+        loaded++;
+        if (loaded === TOTAL_FRAMES) startPlayback();
+      };
+      images.push(img);
+    }
+
+    return () => { cancelAnimationFrame(rafId); };
+  }, []);
+
+  // ── GSAP splash content animations ───────────────────────────────────────
   useGSAP(
     (_ctx, contextSafe) => {
-      gsap.set(ringRef.current, {
-        strokeDasharray: CIRCUMFERENCE,
-        strokeDashoffset: CIRCUMFERENCE,
-      });
+      gsap.set(contentRef.current, { opacity: 0 });
 
-      let exiting = false;
-
-      // ── Exit timeline ──────────────────────────────────────────────────────
       const exitTl = gsap.timeline({
         paused: true,
+        onStart: contextSafe!(() => onExitStart?.()),
         onComplete: contextSafe!(() => onComplete()),
       })
-        .to(
-          [brandRef.current, sloganRef.current, buttonWrapperRef.current],
-          { y: -28, opacity: 0, duration: 0.26, stagger: 0.07, ease: "power2.in" }
-        )
-        .to(containerRef.current, {
-          opacity: 0, duration: 0.18, ease: "power1.in",
-        }, "-=0.06");
-
-      const triggerExit = contextSafe!(() => {
-        if (exiting) return;
-        exiting = true;
-        gsap.killTweensOf(ringRef.current);
-        exitTl.play();
-      });
-
-      clickHandlerRef.current = triggerExit;
-
-      // ── Entry + ring-fill timeline ─────────────────────────────────────────
-      gsap.timeline()
-        .from(brandRef.current, {
-          y: 30, opacity: 0, duration: 0.45, ease: "power3.out",
+        .to(contentRef.current, {
+          opacity: 0, duration: 0.76, ease: "power1.inOut",
         })
-        .from(sloganRef.current, {
-          y: 22, opacity: 0, duration: 0.30, ease: "power2.out",
-        }, "-=0.15")
-        .from(buttonWrapperRef.current, {
-          opacity: 0, scale: 0.78, duration: 0.35, ease: "back.out(1.8)",
-        }, "-=0.10")
-        .to(ringRef.current, {
-          strokeDashoffset: 0,
-          duration: 1.8,
-          ease: "none",
-          onComplete: triggerExit,
-        });
+        .to(containerRef.current, {
+          opacity: 0, duration: 0.34, ease: "power1.in",
+        }, "-=0.2");
+
+      // Canvas faded — logo drops in, holds, then auto-exit
+      onVideoCompleteRef.current = contextSafe!(() => {
+        gsap.timeline()
+          .to(contentRef.current, {
+            opacity: 1,
+            duration: 0.42,
+            ease: "power2.out",
+          })
+          .add(() => exitTl.play(), `+=${LOGO_HOLD_SEC}`);
+      });
     },
     { scope: containerRef }
   );
 
   return (
     <div ref={containerRef} className="splash-screen">
-      <div className="splash-content">
+      <canvas ref={canvasRef} className="splash-canvas" />
 
-        <div ref={brandRef} className="splash-brand">
-          <img src="/images/logo.png" alt="Marco Dev" className="splash-logo" />
+      <div ref={contentRef} className="splash-content">
+        <div className="splash-brand">
+          <img src="/images/Firefly.png" alt="Marco Dev" className="splash-logo" />
           <h1 className="splash-title">
             Marco <span>Dev</span>
           </h1>
         </div>
 
-        <p ref={sloganRef} className="splash-slogan">
-          Desarrollo web &amp; mobile
+        <p className="splash-slogan">
+          Soluciones web &amp; móvil
         </p>
-
-        <div ref={buttonWrapperRef} className="splash-button-wrapper">
-          <svg className="splash-ring" viewBox="0 0 100 100" aria-hidden="true">
-            <circle className="splash-ring-track" cx="50" cy="50" r={RADIUS} />
-            <circle ref={ringRef} className="splash-ring-fill" cx="50" cy="50" r={RADIUS} />
-          </svg>
-
-          <button
-            className="splash-button"
-            onClick={() => clickHandlerRef.current?.()}
-            aria-label="Entrar al sitio"
-          >
-            Iniciar
-          </button>
-        </div>
       </div>
     </div>
   );

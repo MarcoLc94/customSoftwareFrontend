@@ -11,7 +11,7 @@ import "./Layout.css";
 
 gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
 
-const Layout = () => {
+const Layout = ({ navReady }: { navReady?: boolean }) => {
   const wrapperRef = useRef<HTMLDivElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
   const smootherRef = useRef<ReturnType<typeof ScrollSmoother.create> | null>(null);
@@ -37,7 +37,7 @@ const Layout = () => {
 
   return (
     <ThemeProvider>
-      <Navbar />
+      <Navbar navReady={navReady} />
       <div ref={wrapperRef} id="smooth-wrapper">
         <div ref={contentRef} id="smooth-content">
           <main className="main-container">

@@ -1,4 +1,4 @@
-import { useState, useEffect, useContext, useRef } from "react";
+﻿import { useState, useEffect, useContext, useRef } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { ThemeContext } from "../../context/ThemeContext";
 import gsap from "gsap";
@@ -9,7 +9,7 @@ gsap.registerPlugin(useGSAP);
 
 const LOGO_LETTERS = "Marco Dev".split("");
 
-const Navbar = () => {
+const Navbar = ({ navReady }: { navReady?: boolean }) => {
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const { theme, toggleTheme } = useContext(ThemeContext);
@@ -17,6 +17,7 @@ const Navbar = () => {
   const navRef = useRef<HTMLElement>(null);
   const idleCallRef = useRef<gsap.core.Tween | null>(null);
   const variantRef = useRef(0);
+  const entranceRef = useRef<(() => void) | null>(null);
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 10);
@@ -34,19 +35,29 @@ const Navbar = () => {
     return () => { document.body.style.overflow = ""; };
   }, [mobileMenuOpen]);
 
+  // ── navReady → trigger entrance ───────────────────────────────────────────
+  useEffect(() => {
+    if (navReady) entranceRef.current?.();
+  }, [navReady]);
+
   // ── 1. Entrance + idle loop ────────────────────────────────────────────────
-  useGSAP(() => {
+  useGSAP((_ctx, contextSafe) => {
     if (!navRef.current) return;
 
     const getLetters = () => navRef.current!.querySelectorAll<HTMLElement>(".logo-letter");
     const getLinks = () => navRef.current!.querySelectorAll<HTMLElement>(".nav-link");
+    const getImg = () => navRef.current!.querySelector<HTMLElement>(".navbar-logo-img");
 
-    // ── Logo variants (4) ──────────────────────────────────────────────────
+    // Hide everything until splash exits
+    gsap.set([".navbar-logo", ".navbar-actions"], { y: -70, opacity: 0 });
+    gsap.set(getLinks(), { y: -40, opacity: 0 });
+
     const playLogoVariant = (v: number) => {
       const letters = getLetters();
+      const img = getImg();
       if (!letters.length) return;
       switch (v % 4) {
-        case 0: // Shimmer — each letter flashes accent color left→right
+        case 0: // Shimmer — letters flash + image soft pulse
           gsap.fromTo(letters,
             { color: "#ffffff" },
             {
@@ -54,8 +65,12 @@ const Navbar = () => {
               yoyo: true, repeat: 1, ease: "none"
             }
           );
+          gsap.fromTo(img,
+            { scale: 1 },
+            { scale: 1.1, duration: 0.25, yoyo: true, repeat: 1, ease: "sine.inOut" }
+          );
           break;
-        case 1: // Wave — letters bounce up in sequence
+        case 1: // Wave — letters + image bounce up together
           gsap.fromTo(letters,
             { y: 0 },
             {
@@ -63,22 +78,36 @@ const Navbar = () => {
               yoyo: true, repeat: 1, ease: "sine.inOut"
             }
           );
+          gsap.fromTo(img,
+            { y: 0 },
+            { y: -8, duration: 0.22, yoyo: true, repeat: 1, ease: "sine.inOut" }
+          );
           break;
-        case 2: // Glitch — chaotic horizontal displacement
+        case 2: // Glitch — letters shake + image shakes slightly
           gsap.to(letters, {
             x: () => gsap.utils.random(-4, 4),
             duration: 0.06, stagger: 0.03,
             yoyo: true, repeat: 3, ease: "none",
             onComplete: () => { gsap.set(letters, { x: 0 }) },
           });
+          gsap.to(img, {
+            x: () => gsap.utils.random(-3, 3),
+            duration: 0.06,
+            yoyo: true, repeat: 3, ease: "none",
+            onComplete: () => { gsap.set(img, { x: 0 }) },
+          });
           break;
-        case 3: // Scale pulse — letters stretch vertically one by one
+        case 3: // Scale pulse — letters stretch + image pulses
           gsap.fromTo(letters,
             { scaleY: 1, transformOrigin: "bottom center" },
             {
               scaleY: 1.3, duration: 0.14, stagger: 0.05,
               yoyo: true, repeat: 1, ease: "power2.out"
             }
+          );
+          gsap.fromTo(img,
+            { scale: 1 },
+            { scale: 1.12, duration: 0.22, yoyo: true, repeat: 1, ease: "power2.out" }
           );
           break;
       }
@@ -128,29 +157,7 @@ const Navbar = () => {
       }
     };
 
-    // Entrance — logo from left, links alternate top/bottom, actions from right
-    const mm = gsap.matchMedia();
-
-    gsap.from(".navbar-logo", {
-      x: -32, opacity: 0, duration: 0.9, ease: "expo.out", delay: 0.2,
-    });
-    gsap.from(".navbar-actions", {
-      x: 50, opacity: 0, duration: 0.75, ease: "power3.out",
-    });
-
-    mm.add("(min-width: 993px)", () => {
-      Array.from(getLinks()).forEach((link, i) => {
-        gsap.from(link, {
-          y: i % 2 === 0 ? -48 : 48,
-          opacity: 0,
-          duration: 0.7,
-          ease: "back.out(2)",
-          delay: 0.45 + i * 0.12,
-        });
-      });
-    });
-
-    // Idle loop — fires every 8s
+    // Idle loop — started after entrance completes
     const scheduleIdle = (delay: number) => {
       idleCallRef.current = gsap.delayedCall(delay, () => {
         if (window.innerWidth > 992) {
@@ -161,10 +168,30 @@ const Navbar = () => {
         scheduleIdle(8);
       });
     };
-    scheduleIdle(8);
+
+    // Entrance — called when splash exit starts
+    entranceRef.current = contextSafe!(() => {
+      gsap.timeline({ onComplete: () => scheduleIdle(8) })
+        .to(".navbar-logo", {
+          y: 0, opacity: 1, duration: 0.55, ease: "power3.out",
+        })
+        .to(".navbar-actions", {
+          y: 0, opacity: 1, duration: 0.45, ease: "power3.out",
+        }, "-=0.35");
+
+      if (window.innerWidth > 992) {
+        Array.from(getLinks()).forEach((link, i) => {
+          gsap.to(link, {
+            y: 0, opacity: 1, duration: 0.45, ease: "back.out(2)",
+            delay: 0.1 + i * 0.09,
+          });
+        });
+      }
+    });
 
     return () => { idleCallRef.current?.kill(); };
   }, { scope: navRef });
+
 
   // ── 2. Scroll exit / reverse ───────────────────────────────────────────────
   useEffect(() => {
@@ -208,16 +235,16 @@ const Navbar = () => {
     <nav ref={navRef} className={`navbar ${scrolled ? "scrolled" : ""}`}>
       <div className="navbar-logo">
         <Link to="/">
-          <img src="/images/logo.png" alt="Marco Dev" className="navbar-logo-img" />
+          <img src="/images/Firefly.png" alt="Marco Dev" className="navbar-logo-img" />
           <div className="logo-text-group">
             <span className="logo-text">
               {LOGO_LETTERS.map((char, i) => (
-                <span key={i} className="logo-letter">
+                <span key={i} className={`logo-letter${i >= 6 ? " logo-letter--accent" : ""}`}>
                   {char === " " ? " " : char}
                 </span>
               ))}
             </span>
-            <span className="logo-subtitle">Desarrollo web, Android &amp; IOS</span>
+            <span className="logo-subtitle">Soluciones web &amp; móvil</span>
           </div>
         </Link>
       </div>
@@ -231,17 +258,13 @@ const Navbar = () => {
 
       <div className="navbar-actions">
         <button
-          className="theme-toggle"
+          className={`theme-toggle theme-toggle--${theme}`}
           onClick={toggleTheme}
           aria-label={`Cambiar a modo ${theme === "light" ? "oscuro" : "claro"}`}
         >
-          <div className={`toggle-track ${theme}`}>
-            <div className="toggle-thumb">
-              <span key={theme} className="material-symbols-outlined">
-                {theme === "light" ? "light_mode" : "dark_mode"}
-              </span>
-            </div>
-          </div>
+          <span key={theme} className="material-symbols-outlined theme-toggle__icon">
+            {theme === "light" ? "light_mode" : "dark_mode"}
+          </span>
         </button>
 
         <button

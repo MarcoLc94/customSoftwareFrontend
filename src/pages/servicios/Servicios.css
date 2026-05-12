@@ -3,7 +3,7 @@
   overflow: hidden;
   min-height: 100vh;
   padding: calc(var(--navbar-height, 64px) + 4rem) 2rem 7rem;
-  background: linear-gradient(160deg, #04091a 0%, #070f20 45%, #09152a 100%);
+  background: linear-gradient(160deg, var(--color-section-bg) 0%, var(--color-section-bg) 45%, var(--color-section-bg-alt) 100%);
 }
 
 /* ─── Background ─── */
@@ -73,21 +73,21 @@
   font-weight: 600;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: #38bdf8;
+  color: var(--color-accent);
 }
 
 .srv-title {
   font-family: "Signika", sans-serif;
   font-size: clamp(2.4rem, 6vw, 4rem);
   font-weight: 700;
-  color: #ffffff;
+  color: var(--color-on-surface);
   line-height: 1.1;
   letter-spacing: -0.025em;
 }
 
 .srv-subtitle {
   font-size: clamp(1rem, 2vw, 1.15rem);
-  color: rgba(255, 255, 255, 0.6);
+  color: var(--color-on-surface-muted);
   max-width: 560px;
   line-height: 1.7;
 }
@@ -101,8 +101,8 @@
 
 /* ─── Card ─── */
 .srv-card {
-  background: rgba(255, 255, 255, 0.04);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: var(--color-glass-bg);
+  border: 1px solid var(--color-glass-border);
   border-radius: 18px;
   padding: 2rem 1.75rem;
   display: flex;
@@ -145,7 +145,7 @@
 .srv-icon-svg {
   width: 24px;
   height: 24px;
-  color: #38bdf8;
+  color: var(--color-accent);
 }
 
 .srv-card-tag {
@@ -161,13 +161,13 @@
 }
 
 .srv-card-title {
-  color: #ffffff;
+  color: var(--color-on-surface);
   font-size: 1.1rem;
   font-weight: 700;
 }
 
 .srv-card-desc {
-  color: rgba(255, 255, 255, 0.58);
+  color: var(--color-on-surface-muted);
   font-size: 0.875rem;
   line-height: 1.65;
   flex-grow: 1;
@@ -177,7 +177,7 @@
   display: inline-flex;
   align-items: center;
   gap: 0.35rem;
-  color: #38bdf8;
+  color: var(--color-accent);
   font-size: 0.85rem;
   font-weight: 600;
   text-decoration: none;
@@ -212,20 +212,20 @@
   font-family: "Signika", sans-serif;
   font-size: clamp(1.4rem, 3vw, 2rem);
   font-weight: 700;
-  color: #ffffff;
+  color: var(--color-on-surface);
   line-height: 1.2;
 }
 
 .srv-cta-desc {
-  color: rgba(255, 255, 255, 0.58);
+  color: var(--color-on-surface-muted);
   font-size: 1rem;
   line-height: 1.6;
 }
 
 .srv-cta-btn {
   display: inline-block;
-  background: #38bdf8;
-  color: #030810;
+  background: var(--color-accent);
+  color: var(--color-section-dark);
   font-weight: 700;
   font-size: 0.95rem;
   padding: 0.85rem 2.25rem;

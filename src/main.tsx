@@ -4,10 +4,13 @@ import App from "./App.tsx";
 import { BrowserRouter as Router } from "react-router-dom";
 import "material-symbols/outlined.css";
 
-// Add 'fonts-loaded' class once all fonts (including Material Symbols) are ready.
-// Until then, CSS hides .material-symbols-outlined to prevent raw text flashing.
-document.fonts.ready.then(() => {
-  document.documentElement.classList.add("fonts-loaded");
+// Wait specifically for Material Symbols before revealing icon spans.
+// Fallback after 3s so icons never stay permanently hidden on slow connections.
+const markFontsLoaded = () => document.documentElement.classList.add("fonts-loaded");
+const fontTimeout = setTimeout(markFontsLoaded, 3000);
+document.fonts.load('1em "Material Symbols Outlined"').then(() => {
+  clearTimeout(fontTimeout);
+  markFontsLoaded();
 });
 
 createRoot(document.getElementById("root")!).render(

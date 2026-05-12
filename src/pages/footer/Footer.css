@@ -1,6 +1,6 @@
 .footer {
-  background: #040810;
-  color: rgba(255, 255, 255, 0.75);
+  background: var(--color-section-dark);
+  color: var(--color-on-surface-muted);
   position: relative;
   overflow: hidden;
 }
@@ -33,14 +33,14 @@
   font-family: "Signika", sans-serif;
   font-size: 1.5rem;
   font-weight: 700;
-  color: #ffffff;
+  color: var(--color-on-surface);
   letter-spacing: -0.01em;
 }
 
 .footer-brand-desc {
   font-size: 0.9rem;
   line-height: 1.72;
-  color: rgba(255, 255, 255, 0.5);
+  color: var(--color-on-surface-muted);
   max-width: 320px;
 }
 
@@ -85,7 +85,7 @@
   font-weight: 700;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.35);
+  color: var(--color-on-surface-muted);
 }
 
 .footer-list {
@@ -96,14 +96,14 @@
 }
 
 .footer-link {
-  color: rgba(255, 255, 255, 0.6);
+  color: var(--color-on-surface-muted);
   text-decoration: none;
   font-size: 0.9rem;
   transition: color 0.2s ease;
 }
 
 .footer-link:hover {
-  color: #38bdf8;
+  color: var(--color-accent);
 }
 
 /* ─── Contact items ─── */
@@ -117,12 +117,12 @@
 .footer-contact-icon {
   width: 15px;
   height: 15px;
-  color: #38bdf8;
+  color: var(--color-accent);
   flex-shrink: 0;
 }
 
 .footer-contact-plain {
-  color: rgba(255, 255, 255, 0.5);
+  color: var(--color-on-surface-muted);
 }
 
 /* ─── Bottom bar ─── */
@@ -130,7 +130,7 @@
   max-width: 1100px;
   margin: 0 auto;
   padding: 1.5rem 2rem 2rem;
-  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  border-top: 1px solid var(--color-glass-border);
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -139,11 +139,11 @@
 
 .footer-copy {
   font-size: 0.8rem;
-  color: rgba(255, 255, 255, 0.3);
+  color: var(--color-on-surface-muted);
 }
 
 .footer-copy--dim {
-  color: rgba(255, 255, 255, 0.2);
+  color: var(--color-on-surface-muted);
 }
 
 /* ─── Tablet ─── */

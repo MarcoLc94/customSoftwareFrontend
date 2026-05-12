@@ -10,6 +10,7 @@ import Video from "../video/Video";
 import Benefits from "../benefits/Benefits";
 import Tip from "../tip/Tip";
 import ServiciosSection from "./ServiciosSection";
+import Portfolio from "../../components/Portfolio/Portfolio";
 
 import "./Inicio.css";
 
@@ -122,6 +123,7 @@ const Inicio = () => {
                 </div>
             </div>
 
+            <Portfolio />
             <ServiciosSection />
             <Tip />
             <Benefits />

@@ -43,8 +43,8 @@
 
 /* Primary */
 .button--primary {
-  background-color: rgb(56, 189, 248);
-  color: black;
+  background-color: var(--color-accent);
+  color: var(--color-section-dark);
 }
 
 .button--primary:hover,
