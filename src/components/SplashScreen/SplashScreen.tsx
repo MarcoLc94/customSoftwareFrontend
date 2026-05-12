@@ -113,7 +113,7 @@ const SplashScreen = ({ onComplete, onExitStart }: SplashScreenProps) => {
             duration: 0.42,
             ease: "power2.out",
           })
-          .add(() => exitTl.play(), `+=${LOGO_HOLD_SEC}`);
+          .add(() => { exitTl.play(); }, `+=${LOGO_HOLD_SEC}`);
       });
     },
     { scope: containerRef }
