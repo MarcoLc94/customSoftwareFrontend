@@ -12,6 +12,8 @@ import Contacto from "./pages/contacto/Contacto";
 import Inicio from "./pages/inicio/Inicio";
 import SplashScreen from "./components/SplashScreen/SplashScreen";
 import PrivacyPolicy from "./pages/privacy/PrivacyPolicy";
+import TermsOfService from "./pages/terms/TermsOfService";
+import DataDeletion from "./pages/datadeletion/DataDeletion";
 
 
 const App = () => {
@@ -35,6 +37,8 @@ const App = () => {
           <Route path="/planes" element={<Plans />} />
           <Route path="/test" element={<Test />} />
           <Route path="/aviso-de-privacidad" element={<PrivacyPolicy />} />
+          <Route path="/terminos-de-servicio" element={<TermsOfService />} />
+          <Route path="/eliminacion-de-datos" element={<DataDeletion />} />
         </Route>
       </Routes>
     </div>
