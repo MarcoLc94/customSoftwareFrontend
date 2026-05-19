@@ -14,7 +14,7 @@
   transform: translateX(-50%);
   width: 60%;
   height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(56, 189, 248, 0.3), transparent);
+  background: linear-gradient(90deg, transparent, rgba(255, 131, 0, 0.35), transparent);
 }
 
 .ss-inner {
@@ -40,11 +40,11 @@
   font-weight: 600;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: var(--color-accent, #38bdf8);
+  color: var(--color-accent, var(--color-accent));
 }
 
 .ss-title {
-  font-family: "Signika", sans-serif;
+  font-family: "Oswald", sans-serif;
   font-weight: 700;
   font-size: clamp(2rem, 5vw, 3rem);
   color: var(--color-on-surface);
@@ -83,10 +83,10 @@
 }
 
 .ss-card:hover {
-  background: rgba(56, 189, 248, 0.06);
-  border-color: rgba(56, 189, 248, 0.25);
+  background: rgba(255, 131, 0, 0.06);
+  border-color: rgba(255, 131, 0, 0.25);
   transform: translateY(-5px);
-  box-shadow: 0 12px 36px rgba(56, 189, 248, 0.09);
+  box-shadow: 0 12px 36px rgba(255, 131, 0, 0.09);
 }
 
 /* ─── Icon ─── */
@@ -94,8 +94,8 @@
   width: 52px;
   height: 52px;
   border-radius: 14px;
-  background: rgba(56, 189, 248, 0.09);
-  border: 1px solid rgba(56, 189, 248, 0.18);
+  background: rgba(255, 131, 0, 0.09);
+  border: 1px solid rgba(255, 131, 0, 0.18);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -103,14 +103,14 @@
 }
 
 .ss-card:hover .ss-icon-wrap {
-  background: rgba(56, 189, 248, 0.16);
-  border-color: rgba(56, 189, 248, 0.36);
+  background: rgba(255, 131, 0, 0.16);
+  border-color: rgba(255, 131, 0, 0.36);
 }
 
 .ss-icon {
   width: 24px;
   height: 24px;
-  color: var(--color-accent, #38bdf8);
+  color: var(--color-accent, var(--color-accent));
 }
 
 /* ─── Text ─── */

@@ -11,13 +11,16 @@ interface SplashScreenProps {
 const TOTAL_FRAMES     = 200;
 const START_FRAME      = 29;
 const FADE_START_FRAME = 160;
-const FRAME_DURATION   = 1000 / 77; // 10% faster
+const FRAME_DURATION   = 1000 / 85;
 const LOGO_HOLD_SEC    = 0.68;      // 15% faster
 
 const SplashScreen = ({ onComplete, onExitStart }: SplashScreenProps) => {
   const containerRef       = useRef<HTMLDivElement>(null);
   const canvasRef          = useRef<HTMLCanvasElement>(null);
   const contentRef         = useRef<HTMLDivElement>(null);
+  const loaderRef          = useRef<HTMLDivElement>(null);
+  const loaderBarRef       = useRef<HTMLDivElement>(null);
+  const loaderPctRef       = useRef<HTMLSpanElement>(null);
   const onVideoCompleteRef = useRef<(() => void) | null>(null);
 
   // ── Frame playback ────────────────────────────────────────────────────────
@@ -46,6 +49,20 @@ const SplashScreen = ({ onComplete, onExitStart }: SplashScreenProps) => {
       ctx!.fillStyle = "#ffffff";
       ctx!.fillRect(0, 0, cw, ch);
       ctx!.drawImage(img, (cw - sw) / 2, (ch - sh) / 2, sw, sh);
+    }
+
+    function updateLoader(n: number) {
+      const pct = Math.round((n / TOTAL_FRAMES) * 100);
+      if (loaderBarRef.current) loaderBarRef.current.style.width = `${pct}%`;
+      if (loaderPctRef.current) loaderPctRef.current.textContent = `${pct}%`;
+    }
+
+    function hideLoader(cb: () => void) {
+      const el = loaderRef.current;
+      if (!el) { cb(); return; }
+      el.style.transition = "opacity 0.4s ease";
+      el.style.opacity = "0";
+      setTimeout(() => { el.style.display = "none"; cb(); }, 420);
     }
 
     function startPlayback() {
@@ -78,11 +95,13 @@ const SplashScreen = ({ onComplete, onExitStart }: SplashScreenProps) => {
       img.src = `/frames_splash/frame_${String(i).padStart(4, "0")}.jpg`;
       img.onload = () => {
         loaded++;
-        if (loaded === TOTAL_FRAMES) startPlayback();
+        updateLoader(loaded);
+        if (loaded === TOTAL_FRAMES) hideLoader(startPlayback);
       };
       img.onerror = () => {
         loaded++;
-        if (loaded === TOTAL_FRAMES) startPlayback();
+        updateLoader(loaded);
+        if (loaded === TOTAL_FRAMES) hideLoader(startPlayback);
       };
       images.push(img);
     }
@@ -123,6 +142,14 @@ const SplashScreen = ({ onComplete, onExitStart }: SplashScreenProps) => {
 
   return (
     <div ref={containerRef} className="splash-screen">
+      <div ref={loaderRef} className="splash-loader">
+        <div className="splash-loader__logo">Marco<span>Dev</span></div>
+        <div className="splash-loader__bar-wrap">
+          <div ref={loaderBarRef} className="splash-loader__bar" />
+        </div>
+        <span ref={loaderPctRef} className="splash-loader__pct">0%</span>
+      </div>
+
       <canvas ref={canvasRef} className="splash-canvas" />
 
       <div ref={contentRef} className="splash-content">

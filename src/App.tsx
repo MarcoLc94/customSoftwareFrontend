@@ -24,7 +24,12 @@ const App = () => {
     <div>
       {showSplash && (
         <SplashScreen
-          onComplete={() => setShowSplash(false)}
+          onComplete={() => {
+            window.scrollTo(0, 0);
+            document.documentElement.scrollTop = 0;
+            document.body.scrollTop = 0;
+            setShowSplash(false);
+          }}
           onExitStart={() => setNavReady(true)}
         />
       )}

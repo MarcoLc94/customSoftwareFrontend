@@ -9,7 +9,7 @@
 .footer-accent {
   width: 100%;
   height: 1px;
-  background: linear-gradient(90deg, transparent 0%, rgba(56, 189, 248, 0.35) 50%, transparent 100%);
+  background: linear-gradient(90deg, transparent 0%, rgba(255, 131, 0, 0.35) 50%, transparent 100%);
 }
 
 /* ─── Main grid ─── */
@@ -30,7 +30,7 @@
 }
 
 .footer-brand-name {
-  font-family: "Signika", sans-serif;
+  font-family: "Oswald", sans-serif;
   font-size: 1.5rem;
   font-weight: 700;
   color: var(--color-on-surface);

@@ -29,7 +29,7 @@
 .hero-orb--1 {
   width: 700px;
   height: 700px;
-  background: radial-gradient(circle, rgba(56, 189, 248, 0.2) 0%, transparent 65%);
+  background: radial-gradient(circle, rgba(255, 131, 0, 0.18) 0%, transparent 65%);
   top: -220px;
   left: -160px;
   animation: orbDrift1 18s ease-in-out infinite alternate;
@@ -38,7 +38,7 @@
 .hero-orb--2 {
   width: 600px;
   height: 600px;
-  background: radial-gradient(circle, rgba(99, 102, 241, 0.18) 0%, transparent 65%);
+  background: radial-gradient(circle, rgba(0, 27, 78, 0.22) 0%, transparent 65%);
   bottom: -180px;
   right: -140px;
   animation: orbDrift2 22s ease-in-out infinite alternate;
@@ -47,7 +47,7 @@
 .hero-orb--3 {
   width: 450px;
   height: 450px;
-  background: radial-gradient(circle, rgba(20, 184, 166, 0.12) 0%, transparent 65%);
+  background: radial-gradient(circle, rgba(245, 209, 154, 0.18) 0%, transparent 65%);
   top: 50%;
   left: 58%;
   transform: translate(-50%, -50%);
@@ -98,11 +98,11 @@
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  background: rgba(56, 189, 248, 0.08);
-  border: 1px solid rgba(56, 189, 248, 0.22);
-  color: rgba(56, 189, 248, 0.9);
+  background: rgba(255, 131, 0, 0.08);
+  border: 1px solid rgba(255, 131, 0, 0.25);
+  color: var(--color-accent);
   font-size: 0.8rem;
-  font-weight: 500;
+  font-weight: 600;
   letter-spacing: 0.05em;
   padding: 0.38rem 1rem 0.38rem 0.7rem;
   border-radius: 100px;
@@ -112,30 +112,30 @@
   width: 7px;
   height: 7px;
   border-radius: 50%;
-  background: #38bdf8;
-  box-shadow: 0 0 8px rgba(56, 189, 248, 0.8);
+  background: var(--color-accent);
+  box-shadow: 0 0 8px rgba(255, 131, 0, 0.8);
   animation: dotPulse 2.5s ease-in-out infinite;
   flex-shrink: 0;
 }
 
 @keyframes dotPulse {
-  0%, 100% { opacity: 1;   box-shadow: 0 0 8px rgba(56, 189, 248, 0.8); }
-  50%       { opacity: 0.4; box-shadow: 0 0 3px rgba(56, 189, 248, 0.4); }
+  0%, 100% { opacity: 1;   box-shadow: 0 0 8px rgba(255, 131, 0, 0.8); }
+  50%       { opacity: 0.4; box-shadow: 0 0 3px rgba(255, 131, 0, 0.4); }
 }
 
 /* ─── Title ─── */
 .title {
   color: var(--color-on-surface);
-  font-family: "Signika", sans-serif;
+  font-family: "Oswald", sans-serif;
   font-weight: 700;
   font-size: clamp(2.6rem, 6.5vw, 4.8rem);
   line-height: 1.1;
-  text-shadow: 0 2px 24px rgba(0, 0, 0, 0.35);
+  text-shadow: 0 2px 24px rgba(0, 0, 0, 0.18);
   letter-spacing: -0.025em;
 }
 
 .title span {
-  color: var(--color-accent, #38bdf8);
+  color: var(--color-accent);
 }
 
 /* ─── Slogan ─── */
@@ -161,21 +161,7 @@
     align-items: center;
   }
 
-  .hero-orb--1 {
-    width: 380px;
-    height: 380px;
-    top: -140px;
-    left: -100px;
-  }
-
-  .hero-orb--2 {
-    width: 320px;
-    height: 320px;
-    bottom: -100px;
-    right: -80px;
-  }
-
-  .hero-orb--3 {
-    display: none;
-  }
+  .hero-orb--1 { width: 380px; height: 380px; top: -140px; left: -100px; }
+  .hero-orb--2 { width: 320px; height: 320px; bottom: -100px; right: -80px; }
+  .hero-orb--3 { display: none; }
 }

@@ -13,7 +13,7 @@
   transform: translateX(-50%);
   width: 60%;
   height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(56, 189, 248, 0.3), transparent);
+  background: linear-gradient(90deg, transparent, rgba(255, 131, 0, 0.35), transparent);
 }
 
 .process-inner {
@@ -44,7 +44,7 @@
 }
 
 .process-title {
-  font-family: "Signika", sans-serif;
+  font-family: "Oswald", sans-serif;
   font-size: clamp(2rem, 5vw, 3rem);
   font-weight: 700;
   color: var(--color-on-surface);
@@ -74,7 +74,7 @@
   left: calc(12.5% + 4px);
   right: calc(12.5% + 4px);
   height: 2px;
-  background: linear-gradient(90deg, #38bdf8, #6366f1);
+  background: linear-gradient(90deg, #FF8300, #001B4E);
   opacity: 0.35;
   z-index: 0;
   pointer-events: none;
@@ -102,7 +102,7 @@
   background: var(--color-section-bg);
   border: 2px solid var(--color-accent);
   color: var(--color-accent);
-  font-family: "Signika", sans-serif;
+  font-family: "Oswald", sans-serif;
   font-size: 0.95rem;
   font-weight: 700;
   display: flex;
@@ -114,8 +114,8 @@
 }
 
 .process-step:hover .process-step-num {
-  background: rgba(56, 189, 248, 0.15);
-  box-shadow: 0 0 20px rgba(56, 189, 248, 0.3);
+  background: rgba(255, 131, 0, 0.15);
+  box-shadow: 0 0 20px rgba(255, 131, 0, 0.35);
 }
 
 /* ─── Step body ─── */
@@ -130,8 +130,8 @@
   width: 48px;
   height: 48px;
   border-radius: 12px;
-  background: rgba(56, 189, 248, 0.08);
-  border: 1px solid rgba(56, 189, 248, 0.16);
+  background: rgba(255, 131, 0, 0.08);
+  border: 1px solid rgba(255, 131, 0, 0.16);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -139,8 +139,8 @@
 }
 
 .process-step:hover .process-step-icon {
-  background: rgba(56, 189, 248, 0.15);
-  border-color: rgba(56, 189, 248, 0.32);
+  background: rgba(255, 131, 0, 0.15);
+  border-color: rgba(255, 131, 0, 0.32);
 }
 
 .process-icon-svg {

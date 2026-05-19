@@ -61,7 +61,7 @@ const Navbar = ({ navReady }: { navReady?: boolean }) => {
           gsap.fromTo(letters,
             { color: "#ffffff" },
             {
-              color: "var(--color-accent, #38bdf8)", duration: 0.08, stagger: 0.06,
+              color: "var(--color-accent, #FF8300)", duration: 0.08, stagger: 0.06,
               yoyo: true, repeat: 1, ease: "none"
             }
           );

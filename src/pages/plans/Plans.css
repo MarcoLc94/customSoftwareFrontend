@@ -25,7 +25,7 @@
 
 .plans-title {
   color: var(--color-heading);
-  font-family: "Signika", sans-serif;
+  font-family: "Oswald", sans-serif;
   font-size: clamp(1.75rem, 3.5vw, 3rem);
   font-weight: 700;
   margin-bottom: 1rem;

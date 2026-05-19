@@ -101,14 +101,11 @@ const Proceso = () => {
                 </div>
                 <h3 className="proc-step-title">{title}</h3>
                 <p className="proc-step-desc">{desc}</p>
-                <ul className="proc-step-details">
+                <div className="proc-step-tags">
                   {details.map((d) => (
-                    <li key={d} className="proc-step-detail">
-                      <span className="proc-detail-dot" aria-hidden="true" />
-                      {d}
-                    </li>
+                    <span key={d} className="proc-step-tag">{d}</span>
                   ))}
-                </ul>
+                </div>
               </div>
             </div>
           ))}

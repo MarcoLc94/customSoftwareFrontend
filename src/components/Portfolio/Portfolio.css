@@ -28,8 +28,8 @@
   letter-spacing: 0.14em;
   text-transform: uppercase;
   color: var(--color-accent);
-  background: rgba(56, 189, 248, 0.1);
-  border: 1px solid rgba(56, 189, 248, 0.25);
+  background: rgba(255, 131, 0, 0.1);
+  border: 1px solid rgba(255, 131, 0, 0.25);
   border-radius: 100px;
   padding: 0.3rem 0.9rem;
 }
@@ -65,15 +65,15 @@
   flex-direction: column;
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
-  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.25), 0 0 0 0 rgba(56, 189, 248, 0);
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.25), 0 0 0 0 rgba(255, 131, 0, 0);
   transition: transform 0.28s ease, box-shadow 0.28s ease, border-color 0.28s ease;
   will-change: transform;
 }
 
 .portfolio-card:hover {
   transform: translateY(-6px);
-  border-color: rgba(56, 189, 248, 0.35);
-  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.35), 0 0 28px rgba(56, 189, 248, 0.12);
+  border-color: rgba(255, 131, 0, 0.35);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.35), 0 0 28px rgba(255, 131, 0, 0.12);
 }
 
 /* ── Image wrap ──────────────────────────────────────────────── */
@@ -139,17 +139,17 @@
   font-weight: 600;
   color: var(--color-accent);
   text-decoration: none;
-  border: 1px solid rgba(56, 189, 248, 0.3);
+  border: 1px solid rgba(255, 131, 0, 0.3);
   border-radius: 8px;
   padding: 0.55rem 1rem;
   align-self: flex-start;
-  background: rgba(56, 189, 248, 0.06);
+  background: rgba(255, 131, 0, 0.06);
   transition: background 0.2s ease, border-color 0.2s ease, gap 0.2s ease;
 }
 
 .portfolio-card__btn:hover {
-  background: rgba(56, 189, 248, 0.14);
-  border-color: rgba(56, 189, 248, 0.55);
+  background: rgba(255, 131, 0, 0.14);
+  border-color: rgba(255, 131, 0, 0.55);
   gap: 0.65rem;
 }
 

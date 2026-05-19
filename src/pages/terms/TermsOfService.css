@@ -23,7 +23,7 @@
 .terms-orb--1 {
   width: 550px;
   height: 550px;
-  background: radial-gradient(circle, rgba(56, 189, 248, 0.13) 0%, transparent 65%);
+  background: radial-gradient(circle, rgba(255, 131, 0, 0.13) 0%, transparent 65%);
   top: -180px;
   left: -120px;
 }
@@ -31,7 +31,7 @@
 .terms-orb--2 {
   width: 450px;
   height: 450px;
-  background: radial-gradient(circle, rgba(99, 102, 241, 0.12) 0%, transparent 65%);
+  background: radial-gradient(circle, rgba(0, 27, 78, 0.15) 0%, transparent 65%);
   bottom: -120px;
   right: -100px;
 }
@@ -65,7 +65,7 @@
 }
 
 .terms-title {
-  font-family: "Signika", sans-serif;
+  font-family: "Oswald", sans-serif;
   font-size: clamp(2.2rem, 5vw, 3.2rem);
   font-weight: 700;
   color: var(--color-on-surface);
@@ -90,7 +90,7 @@
 }
 
 .terms-heading {
-  font-family: "Signika", sans-serif;
+  font-family: "Oswald", sans-serif;
   font-weight: 600;
   font-size: 1.15rem;
   color: var(--color-on-surface);
