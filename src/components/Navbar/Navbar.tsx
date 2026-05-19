@@ -254,6 +254,7 @@ const Navbar = ({ navReady }: { navReady?: boolean }) => {
         <Link to="/servicios" className={`nav-link ${isActive("/servicios") ? "active" : ""}`}>Servicios</Link>
         <Link to="/proceso" className={`nav-link ${isActive("/proceso") ? "active" : ""}`}>Proceso</Link>
         <Link to="/contacto" className={`nav-link ${isActive("/contacto") ? "active" : ""}`}>Contacto</Link>
+        <Link to="/aviso-de-privacidad" className={`nav-link ${isActive("/aviso-de-privacidad") ? "active" : ""}`}>Privacidad</Link>
       </div>
 
       <div className="navbar-actions">

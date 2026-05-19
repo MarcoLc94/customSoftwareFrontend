@@ -11,6 +11,7 @@ import Proceso from "./pages/proceso/Proceso";
 import Contacto from "./pages/contacto/Contacto";
 import Inicio from "./pages/inicio/Inicio";
 import SplashScreen from "./components/SplashScreen/SplashScreen";
+import PrivacyPolicy from "./pages/privacy/PrivacyPolicy";
 
 
 const App = () => {
@@ -33,6 +34,7 @@ const App = () => {
           <Route path="/contacto" element={<Contacto />} />
           <Route path="/planes" element={<Plans />} />
           <Route path="/test" element={<Test />} />
+          <Route path="/aviso-de-privacidad" element={<PrivacyPolicy />} />
         </Route>
       </Routes>
     </div>

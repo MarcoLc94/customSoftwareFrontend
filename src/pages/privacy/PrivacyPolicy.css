@@ -1,0 +1,140 @@
+.prv-page {
+  position: relative;
+  overflow: hidden;
+  min-height: 100vh;
+  padding: calc(var(--navbar-height, 64px) + 4rem) 2rem 7rem;
+  background: linear-gradient(160deg, var(--color-section-bg) 0%, var(--color-section-bg) 45%, var(--color-section-bg-alt) 100%);
+}
+
+/* ─── Background ─── */
+.prv-bg {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 0;
+}
+
+.prv-orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(90px);
+}
+
+.prv-orb--1 {
+  width: 550px;
+  height: 550px;
+  background: radial-gradient(circle, rgba(56, 189, 248, 0.13) 0%, transparent 65%);
+  top: -180px;
+  left: -120px;
+}
+
+.prv-orb--2 {
+  width: 450px;
+  height: 450px;
+  background: radial-gradient(circle, rgba(99, 102, 241, 0.12) 0%, transparent 65%);
+  bottom: -120px;
+  right: -100px;
+}
+
+.prv-grid-pat {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.024) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.024) 1px, transparent 1px);
+  background-size: 64px 64px;
+  -webkit-mask-image: radial-gradient(ellipse 80% 80% at 50% 30%, black 10%, transparent 100%);
+  mask-image: radial-gradient(ellipse 80% 80% at 50% 30%, black 10%, transparent 100%);
+}
+
+/* ─── Layout ─── */
+.prv-inner {
+  position: relative;
+  z-index: 1;
+  max-width: 780px;
+  margin: 0 auto;
+}
+
+/* ─── Header ─── */
+.prv-label {
+  display: inline-block;
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-accent);
+  margin-bottom: 0.75rem;
+}
+
+.prv-title {
+  font-family: "Signika", sans-serif;
+  font-size: clamp(2.2rem, 5vw, 3.2rem);
+  font-weight: 700;
+  color: var(--color-on-surface);
+  line-height: 1.1;
+  letter-spacing: -0.025em;
+  margin-bottom: 0.4rem;
+}
+
+.prv-updated {
+  font-size: 0.82rem;
+  color: var(--color-on-surface-muted);
+  margin-bottom: 2.5rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid var(--color-glass-border);
+}
+
+.prv-intro {
+  font-size: 1rem;
+  line-height: 1.8;
+  color: var(--color-on-surface-muted);
+  margin-bottom: 2rem;
+}
+
+/* ─── Sections ─── */
+.prv-heading {
+  font-family: "Signika", sans-serif;
+  font-weight: 600;
+  font-size: 1.15rem;
+  color: var(--color-on-surface);
+  margin-top: 2.5rem;
+  margin-bottom: 0.75rem;
+  padding-bottom: 0.4rem;
+  border-bottom: 1px solid var(--color-glass-border);
+}
+
+.prv-inner p {
+  font-size: 0.95rem;
+  line-height: 1.8;
+  color: var(--color-on-surface-muted);
+  margin-bottom: 0.85rem;
+}
+
+.prv-list {
+  padding-left: 1.4rem;
+  margin-bottom: 1rem;
+}
+
+.prv-list li {
+  font-size: 0.95rem;
+  line-height: 1.8;
+  color: var(--color-on-surface-muted);
+  margin-bottom: 0.3rem;
+}
+
+.prv-inner a {
+  color: var(--color-accent);
+  text-decoration: none;
+}
+
+.prv-inner a:hover {
+  text-decoration: underline;
+}
+
+/* ─── Mobile ─── */
+@media (max-width: 600px) {
+  .prv-page {
+    padding: calc(var(--navbar-height, 64px) + 2.5rem) 1.25rem 5rem;
+  }
+}

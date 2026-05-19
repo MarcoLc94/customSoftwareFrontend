@@ -40,9 +40,11 @@ const SplashScreen = ({ onComplete, onExitStart }: SplashScreenProps) => {
     function drawCover(img: HTMLImageElement) {
       const cw = canvas!.width;
       const ch = canvas!.height;
-      const scale = Math.max(cw / img.naturalWidth, ch / img.naturalHeight);
+      const scale = Math.max(cw / img.naturalWidth, ch / img.naturalHeight) * 0.8;
       const sw = img.naturalWidth  * scale;
       const sh = img.naturalHeight * scale;
+      ctx!.fillStyle = "#ffffff";
+      ctx!.fillRect(0, 0, cw, ch);
       ctx!.drawImage(img, (cw - sw) / 2, (ch - sh) / 2, sw, sh);
     }
 
