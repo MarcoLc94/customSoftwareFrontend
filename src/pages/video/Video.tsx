@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useRef } from "react";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -8,17 +8,8 @@ import "./Video.css";
 gsap.registerPlugin(ScrollTrigger);
 
 const Video = () => {
-  const [videoSrc, setVideoSrc] = useState("/videos/customsoftdesktop.mp4");
+  const [videoSrc] = useState("/videos/Agent_video_Pippit_20260519045219.mp4");
   const ref = useRef<HTMLElement>(null);
-
-  useEffect(() => {
-    const handleResize = () => {
-      setVideoSrc(window.innerWidth <= 768 ? "/videos/customsoftmobile.mp4" : "/videos/customsoftdesktop.mp4");
-    };
-    handleResize();
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
 
   useGSAP(() => {
     if (!ref.current) return;
@@ -50,10 +41,7 @@ const Video = () => {
           </p>
         </div>
 
-        <div
-          className="vdemo-player-wrap"
-          style={videoSrc.includes("mobile") ? { aspectRatio: "9/16", maxWidth: "300px" } : {}}
-        >
+        <div className="vdemo-player-wrap">
           <MuxPlayer
             playbackId=""
             src={videoSrc}
