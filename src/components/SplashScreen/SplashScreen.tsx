@@ -8,10 +8,10 @@ interface SplashScreenProps {
   onExitStart?: () => void;
 }
 
-const TOTAL_FRAMES     = 200;
+const TOTAL_FRAMES     = 193;
 const START_FRAME      = 29;
-const FADE_START_FRAME = 160;
-const FRAME_DURATION   = 1000 / 85;
+const FADE_START_FRAME = 120;
+const FRAME_DURATION   = 1000 / 140;
 const LOGO_HOLD_SEC    = 0.68;      // 15% faster
 
 const SplashScreen = ({ onComplete, onExitStart }: SplashScreenProps) => {
@@ -43,11 +43,10 @@ const SplashScreen = ({ onComplete, onExitStart }: SplashScreenProps) => {
     function drawCover(img: HTMLImageElement) {
       const cw = canvas!.width;
       const ch = canvas!.height;
-      const scale = Math.max(cw / img.naturalWidth, ch / img.naturalHeight) * 0.8;
+      const scale = Math.max(cw / img.naturalWidth, ch / img.naturalHeight) * 0.4;
       const sw = img.naturalWidth  * scale;
       const sh = img.naturalHeight * scale;
-      ctx!.fillStyle = "#ffffff";
-      ctx!.fillRect(0, 0, cw, ch);
+      ctx!.clearRect(0, 0, cw, ch);
       ctx!.drawImage(img, (cw - sw) / 2, (ch - sh) / 2, sw, sh);
     }
 
@@ -67,32 +66,30 @@ const SplashScreen = ({ onComplete, onExitStart }: SplashScreenProps) => {
 
     function startPlayback() {
       function tick(now: number) {
-        if (now - lastTime >= FRAME_DURATION) {
-          lastTime = now;
+        while (now - lastTime >= FRAME_DURATION && currentFrame < TOTAL_FRAMES) {
+          lastTime += FRAME_DURATION;
           drawCover(images[currentFrame]);
           currentFrame++;
 
           if (currentFrame >= FADE_START_FRAME && !fadingStarted) {
             fadingStarted = true;
-            const fadeDuration = (TOTAL_FRAMES - FADE_START_FRAME) * FRAME_DURATION / 1000;
             gsap.to(canvas, {
               opacity: 0,
-              duration: fadeDuration,
+              duration: 0.45,
               ease: "power2.in",
               onComplete: () => onVideoCompleteRef.current?.(),
             });
           }
-
-          if (currentFrame >= TOTAL_FRAMES) return;
         }
-        rafId = requestAnimationFrame(tick);
+        if (currentFrame < TOTAL_FRAMES) rafId = requestAnimationFrame(tick);
       }
+      lastTime = performance.now();
       rafId = requestAnimationFrame(tick);
     }
 
     for (let i = 1; i <= TOTAL_FRAMES; i++) {
       const img = new Image();
-      img.src = `/frames_splash/frame_${String(i).padStart(4, "0")}.jpg`;
+      img.src = `/frames_splash/frame_${String(i).padStart(4, "0")}_nobg.png`;
       img.onload = () => {
         loaded++;
         updateLoader(loaded);

@@ -1,7 +1,7 @@
 import { useEffect, useRef } from "react";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
-import { Globe, Monitor, ShoppingBag, Users, FileText, Wrench, ArrowRight } from "lucide-react";
+import { Globe, Monitor, ShoppingBag, Users, FileText, Wrench, ArrowRight, Megaphone, Bot } from "lucide-react";
 import "./Servicios.css";
 
 const services = [
@@ -40,6 +40,18 @@ const services = [
     tag: "Soporte",
     title: "Mantenimiento de Software",
     desc: "Soporte continuo, corrección de errores y actualizaciones. Tu sistema siempre funcionando al 100%.",
+  },
+  {
+    Icon: Megaphone,
+    tag: "Marketing",
+    title: "Marketing Digital",
+    desc: "Campañas de publicidad en Meta orientadas a generar contactos reales. Alcanzá miles de personas y recibí conversaciones por WhatsApp cada semana.",
+  },
+  {
+    Icon: Bot,
+    tag: "IA",
+    title: "Chatbots con IA",
+    desc: "Automatizá tu atención al cliente con chatbots inteligentes para WhatsApp. Respuestas 24/7, historial de clientes, agendamiento y más.",
   },
 ];
 
