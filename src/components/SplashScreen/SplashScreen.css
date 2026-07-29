@@ -101,36 +101,3 @@
   100% { transform: scale(0.85); opacity: 0; }
 }
 
-/* ── CSS/DOM fallback scene (no WebGL) — same beat: scattered → lit & assembled ── */
-.splash-fallback-scene {
-  position: absolute;
-  inset: 0;
-  z-index: 2;
-  pointer-events: none;
-}
-
-.splash-fallback-glow {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 340px;
-  height: 340px;
-  margin: -170px 0 0 -170px;
-  border-radius: 50%;
-  background: radial-gradient(circle, rgba(255, 217, 160, 0.55) 0%, rgba(255, 131, 0, 0.22) 42%, transparent 72%);
-  filter: blur(6px);
-  opacity: 0;
-}
-
-.splash-fallback-piece {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 14px;
-  height: 14px;
-  margin: -7px 0 0 -7px;
-  background: linear-gradient(135deg, #FF8300, #F5D19A);
-  box-shadow: 0 0 10px rgba(255, 131, 0, 0.5);
-  opacity: 0.3;
-}
-

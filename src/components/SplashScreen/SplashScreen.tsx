@@ -38,10 +38,7 @@ const SplashScreen = ({ onComplete, onExitStart }: SplashScreenProps) => {
   const contentRef         = useRef<HTMLDivElement>(null);
   const onVideoCompleteRef = useRef<(() => void) | null>(null);
   const activateRef        = useRef<() => void>(() => {});
-  const fallbackPiecesRef  = useRef<(HTMLDivElement | null)[]>([]);
-  const fallbackGlowRef    = useRef<HTMLDivElement>(null);
   const [showPrompt, setShowPrompt] = useState(true);
-  const [webglOk, setWebglOk] = useState(true);
 
   // ── WebGL scene: dim scattered pieces → click lights them into formation ──
   useEffect(() => {
@@ -52,7 +49,9 @@ const SplashScreen = ({ onComplete, onExitStart }: SplashScreenProps) => {
     try {
       renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true });
     } catch {
-      setWebglOk(false);
+      // WebGL unavailable — skip straight to the content reveal.
+      setShowPrompt(false);
+      onVideoCompleteRef.current?.();
       return;
     }
 
@@ -170,45 +169,6 @@ const SplashScreen = ({ onComplete, onExitStart }: SplashScreenProps) => {
     };
   }, []);
 
-  // ── CSS/DOM fallback: same "scattered → lit & assembled" beat, no WebGL needed ──
-  useEffect(() => {
-    if (webglOk) return;
-    const pieces = fallbackPiecesRef.current.filter((el): el is HTMLDivElement => el !== null);
-
-    pieces.forEach((el) => {
-      const angle = Math.random() * Math.PI * 2;
-      const radius = 60 + Math.random() * 110;
-      gsap.set(el, {
-        x: Math.cos(angle) * radius,
-        y: Math.sin(angle) * radius * 0.6 - 10,
-        rotation: Math.random() * 360,
-        opacity: 0.3,
-      });
-    });
-
-    activateRef.current = () => {
-      setShowPrompt(false);
-      gsap.to(fallbackGlowRef.current, { opacity: 1, duration: 0.9, ease: "power2.out" });
-
-      pieces.forEach((el, i) => {
-        const angle = (i / PIECE_COUNT) * Math.PI * 2;
-        gsap.to(el, {
-          x: Math.cos(angle) * 78,
-          y: Math.sin(angle) * 78 * 0.55,
-          rotation: 0,
-          opacity: 1,
-          duration: ASSEMBLE_DURATION,
-          delay: (i / PIECE_COUNT) * ASSEMBLE_STAGGER,
-          ease: "power3.out",
-        });
-      });
-
-      gsap.delayedCall(ASSEMBLE_DURATION + ASSEMBLE_STAGGER + HOLD_AFTER_ASSEMBLE, () => {
-        onVideoCompleteRef.current?.();
-      });
-    };
-  }, [webglOk]);
-
   // ── Shared trigger: click/tap anywhere, or auto after a few seconds ──────
   useEffect(() => {
     const handlePointerDown = () => activateRef.current();
@@ -255,19 +215,6 @@ const SplashScreen = ({ onComplete, onExitStart }: SplashScreenProps) => {
   return (
     <div ref={containerRef} className="splash-screen">
       <canvas ref={canvasRef} className="splash-canvas" />
-
-      {!webglOk && (
-        <div className="splash-fallback-scene" aria-hidden="true">
-          <div ref={fallbackGlowRef} className="splash-fallback-glow" />
-          {Array.from({ length: PIECE_COUNT }).map((_, i) => (
-            <div
-              key={i}
-              ref={(el) => { fallbackPiecesRef.current[i] = el; }}
-              className="splash-fallback-piece"
-            />
-          ))}
-        </div>
-      )}
 
       {showPrompt && (
         <div className="splash-prompt">
