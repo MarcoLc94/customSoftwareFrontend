@@ -16,7 +16,7 @@ const reviews = [
     text: "Necesitábamos un sistema de inventario a medida para nuestros almacenes. Las soluciones comerciales eran muy rígidas. Marco Dev entendió nuestro flujo y creó una herramienta perfecta. Redujimos pérdidas un 20% en el primer trimestre.",
   },
   {
-    img: "/losreyes.png",
+    img: "/losreyes.jpg",
     name: "Joaquin Almaguer",
     role: "CEO, Gruas Los Reyes",
     location: "Guadalupe, NL",

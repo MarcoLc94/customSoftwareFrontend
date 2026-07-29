@@ -100,7 +100,7 @@
   color: var(--navbar-text);
   text-decoration: none;
   font-weight: 500;
-  font-size: 0.975rem;
+  font-size: clamp(1.1rem, 0.85vw + 0.7rem, 1.45rem);
   padding: 0.5rem 0.85rem;
   border-radius: 6px;
   position: relative;

@@ -21,7 +21,7 @@ const Layout = ({ navReady }: { navReady?: boolean }) => {
     smootherRef.current = ScrollSmoother.create({
       wrapper: wrapperRef.current!,
       content: contentRef.current!,
-      smooth: 4,
+      smooth: 1.2,
       effects: true,
       smoothTouch: 0.1,
     });

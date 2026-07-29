@@ -30,6 +30,15 @@ const Navbar = ({ navReady }: { navReady?: boolean }) => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   }, [location.pathname]);
 
+  // The idle shimmer (below) can leave an inline color on the logo letters that
+  // otherwise wouldn't refresh until its next cycle — clear it so a theme toggle
+  // is reflected immediately instead of up to 8s later.
+  useEffect(() => {
+    navRef.current?.querySelectorAll<HTMLElement>(".logo-letter").forEach((el) => {
+      el.style.removeProperty("color");
+    });
+  }, [theme]);
+
   useEffect(() => {
     document.body.style.overflow = mobileMenuOpen ? "hidden" : "";
     return () => { document.body.style.overflow = ""; };
@@ -57,12 +66,17 @@ const Navbar = ({ navReady }: { navReady?: boolean }) => {
       const img = getImg();
       if (!letters.length) return;
       switch (v % 4) {
-        case 0: // Shimmer — letters flash + image soft pulse
+        case 0: { // Shimmer — letters flash + image soft pulse
+          // yoyo+repeat:1 always ends back at the "from" color, so read the
+          // theme's current text color instead of hardcoding white (which broke light mode).
+          const restColor = getComputedStyle(document.documentElement)
+            .getPropertyValue("--navbar-text")
+            .trim() || "#ffffff";
           gsap.fromTo(letters,
-            { color: "#ffffff" },
+            { color: restColor },
             {
               color: "var(--color-accent, #FF8300)", duration: 0.08, stagger: 0.06,
-              yoyo: true, repeat: 1, ease: "none"
+              yoyo: true, repeat: 1, ease: "none",
             }
           );
           gsap.fromTo(img,
@@ -70,6 +84,7 @@ const Navbar = ({ navReady }: { navReady?: boolean }) => {
             { scale: 1.1, duration: 0.25, yoyo: true, repeat: 1, ease: "sine.inOut" }
           );
           break;
+        }
         case 1: // Wave — letters + image bounce up together
           gsap.fromTo(letters,
             { y: 0 },
@@ -235,7 +250,11 @@ const Navbar = ({ navReady }: { navReady?: boolean }) => {
     <nav ref={navRef} className={`navbar ${scrolled ? "scrolled" : ""}`}>
       <div className="navbar-logo">
         <Link to="/">
-          <img src="/images/Firefly.png" alt="Marco Dev" className="navbar-logo-img" />
+          <img
+            src={theme === "light" ? "/images/lightmode.png" : "/images/Firefly.png"}
+            alt="Marco Dev"
+            className="navbar-logo-img"
+          />
           <div className="logo-text-group">
             <span className="logo-text">
               {LOGO_LETTERS.map((char, i) => (

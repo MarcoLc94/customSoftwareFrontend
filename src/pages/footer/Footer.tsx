@@ -37,7 +37,6 @@ const Footer = () => {
             <li><Link to="/"          className="footer-link">Inicio</Link></li>
             <li><Link to="/servicios" className="footer-link">Servicios</Link></li>
             <li><Link to="/proceso"   className="footer-link">Proceso</Link></li>
-            <li><Link to="/planes"    className="footer-link">Planes</Link></li>
             <li><Link to="/contacto"  className="footer-link">Contacto</Link></li>
             <li><Link to="/aviso-de-privacidad"  className="footer-link">Aviso de Privacidad</Link></li>
             <li><Link to="/terminos-de-servicio" className="footer-link">Condiciones del Servicio</Link></li>

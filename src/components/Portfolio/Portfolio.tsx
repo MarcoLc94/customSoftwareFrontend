@@ -16,7 +16,7 @@ const projects = [
     external: true,
   },
   {
-    img: "/losreyes.png",
+    img: "/losreyes.jpg",
     name: "Grúas Los Reyes",
     type: "Landing Page",
     label: "Ver proyecto",
