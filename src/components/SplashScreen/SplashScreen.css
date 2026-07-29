@@ -8,13 +8,112 @@
   justify-content: center;
 }
 
+.splash-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+  z-index: 0;
+}
+
+.splash-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  opacity: 0;
+  pointer-events: none;
+  background: radial-gradient(circle at 50% 45%, rgba(255, 131, 0, 0.12), transparent 60%);
+}
+
 .splash-content {
   position: relative;
-  z-index: 1;
+  z-index: 2;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 1.75rem;
+}
+
+.splash-prompt {
+  position: absolute;
+  left: 50%;
+  bottom: 8%;
+  transform: translateX(-50%);
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.splash-prompt__orbit {
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 149, 0, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: splash-orbit-spin 2.4s linear infinite;
+}
+
+.splash-prompt__core {
+  width: 0.6rem;
+  height: 0.6rem;
+  border-radius: 50%;
+  background: #ff8300;
+  box-shadow: 0 0 12px rgba(255, 131, 0, 0.8);
+}
+
+.splash-prompt__label {
+  font-family: "Nunito", sans-serif;
+  font-size: 0.85rem;
+  letter-spacing: 0.08em;
+  color: rgba(255, 255, 255, 0.65);
+  text-transform: uppercase;
+}
+
+.splash-prompt__progress {
+  width: 8rem;
+  height: 2px;
+  background: rgba(255, 255, 255, 0.15);
+  overflow: hidden;
+  border-radius: 1px;
+}
+
+.splash-prompt__progress-bar {
+  height: 100%;
+  width: 100%;
+  background: #ff8300;
+  transform-origin: left center;
+  animation: splash-progress-fill 6s linear forwards;
+}
+
+.splash-flash {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  background: #fff;
+  opacity: 0;
+  pointer-events: none;
+  animation: splash-flash-pulse 2.2s ease-out forwards;
+}
+
+@keyframes splash-orbit-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes splash-progress-fill {
+  from { transform: scaleX(0); }
+  to { transform: scaleX(1); }
+}
+
+@keyframes splash-flash-pulse {
+  0% { opacity: 0; }
+  8% { opacity: 0.5; }
+  100% { opacity: 0; }
 }
 
 .splash-brand {
@@ -24,12 +123,27 @@
   gap: clamp(0.75rem, 3vw, 1.25rem);
 }
 
+.splash-logo-wrap {
+  position: relative;
+  flex-shrink: 0;
+}
+
 .splash-logo {
+  position: relative;
+  z-index: 1;
   width: clamp(3.2rem, 12vw, 6rem);
   height: clamp(3.2rem, 12vw, 6rem);
   object-fit: contain;
-  flex-shrink: 0;
   filter: drop-shadow(0 0 18px rgba(255, 131, 0, 0.45));
+}
+
+.splash-logo-glow {
+  position: absolute;
+  inset: -20%;
+  z-index: 0;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255, 131, 0, 0.35), transparent 70%);
+  filter: blur(8px);
 }
 
 .splash-title {
@@ -40,10 +154,17 @@
   letter-spacing: -0.02em;
   line-height: 1;
   text-align: left;
+  perspective: 400px;
 }
 
-.splash-title span {
-  color: #FF8300;
+.splash-title-char {
+  transform-style: preserve-3d;
+}
+
+.splash-divider {
+  width: clamp(6rem, 20vw, 10rem);
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #ff8300, transparent);
 }
 
 .splash-slogan {
@@ -54,4 +175,26 @@
   letter-spacing: 0.06em;
   text-align: center;
   margin-top: -0.75rem;
+}
+
+.splash-meta {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.splash-meta__dot {
+  width: 0.4rem;
+  height: 0.4rem;
+  border-radius: 50%;
+  background: #ff8300;
+  box-shadow: 0 0 8px rgba(255, 131, 0, 0.8);
+}
+
+.splash-meta__text {
+  font-family: "Nunito", sans-serif;
+  font-size: 0.8rem;
+  letter-spacing: 0.05em;
+  color: rgba(255, 255, 255, 0.5);
+  text-transform: uppercase;
 }
