@@ -89,9 +89,8 @@ const Inicio = () => {
                         </h1>
 
                         <p className="slogan">
-                            Trabajas directo conmigo: un desarrollador senior, no una mesa de soporte.
-                            Software, páginas web y apps a la medida — con Inteligencia Artificial
-                            cuando realmente suma valor.
+                            Trabajas directo conmigo: un desarrollador experimentado.
+                            Software, páginas web, apps moviles e Inteligencia Artificial
                         </p>
 
                         <div className="button-div">
