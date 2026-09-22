@@ -1,0 +1,33 @@
+---
+import { Image } from 'astro:assets';
+import inventory from '../assets/new-logo.jpeg';
+import gruas from '../assets/losreyes.jpg';
+import auto from '../assets/autocerrajeria.jpg';
+const reviews = [
+  {
+    img: inventory,
+    name: "David Torres",
+    role: "CEO, ATS Productos",
+    location: "Salinas Victoria, NL",
+    stars: 5,
+    text: "Necesitábamos un sistema de inventario a medida para nuestros almacenes. Las soluciones comerciales eran muy rígidas. Marco Dev entendió nuestro flujo y creó una herramienta perfecta. Redujimos pérdidas un 20% en el primer trimestre.",
+  },
+  {
+    img: gruas,
+    name: "Joaquin Almaguer",
+    role: "CEO, Gruas Los Reyes",
+    location: "Guadalupe, NL",
+    stars: 4,
+    text: "Necesitábamos ayuda para atraer nuevos clientes y prospectos. El sitio web que desarrollaron para nosotros aumentó nuestro tráfico y ventas considerablemente.",
+  },
+  {
+    img: auto,
+    name: "Humberto Lopez",
+    role: "Dueño, Autocerrajería",
+    location: "Guadalupe, NL",
+    stars: 5,
+    text: "Quería un sitio web para mostrar mis servicios y productos. El equipo me entregó una solución rápida, bonita y fácil de usar para mis clientes. ¡El soporte es excelente!",
+  },
+];
+---
+<section class="section testimonials-section" id="testimonios"><div class="container"><div class="section-heading"><div><span class="eyebrow">CONFIANZA QUE SE CONSTRUYE</span><h2>Lo que dicen<br/><span class="muted">mis clientes.</span></h2></div><p>Empresas que confiaron en Marco Dev para dar su siguiente paso.</p></div><div class="testimonials-grid">{reviews.map(review=><article class="testimonial-card"><span class="quote-mark" aria-hidden="true">“</span><blockquote>{review.text}</blockquote><div class="review-stars" role="img" aria-label={`${review.stars} de 5 estrellas`}><span aria-hidden="true">{'★'.repeat(review.stars)}<span class="star-empty">{'☆'.repeat(5-review.stars)}</span></span></div><div class="review-author"><Image src={review.img} alt="" width={96} height={96} fit="cover" format="webp" loading="lazy"/><div><h3>{review.name}</h3><p>{review.role}<br/>{review.location}</p></div></div></article>)}</div></div></section>

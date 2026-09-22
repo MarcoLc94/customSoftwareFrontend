@@ -1,69 +1,39 @@
-# React + TypeScript + Vite
+# Marco Dev
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Portafolio y sitio de servicios construido con Astro. HTML estático, CSS adaptable e interacciones pequeñas sin React, Three.js ni fuentes de iconos.
 
-Currently, two official plugins are available:
+## Desarrollo
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Requiere Node.js 22.12 o superior (versión sugerida en `.nvmrc`).
 
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      ...tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      ...tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      ...tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```sh
+nvm use
+npm ci
+npm run dev
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## Verificación y publicación
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```sh
+npm run build
+npm run preview
 ```
+
+`build` ejecuta la comprobación de tipos de Astro y genera el sitio en `dist/`. Publica esa carpeta en tu alojamiento estático. Configura Node 22 y el comando `npm run build` en el proveedor. Elimina cualquier regla antigua de SPA que reescriba todas las rutas a `/index.html`: cada URL ahora tiene su propio HTML. Usa `404.html` para páginas inexistentes.
+
+## Contenido
+
+- `src/pages/index.astro`: portada.
+- `src/data.ts`: servicios, proceso y contacto.
+- `src/components/Projects.astro`: proyectos y enlaces originales.
+- `src/styles/global.css`: diseño y adaptación móvil.
+- `src/layouts/Layout.astro`: navegación, pie y metadatos por página.
+- `src/assets/`: imágenes transformadas a WebP con tamaños adaptables por Astro.
+- `public/sitemap.xml`: actualizar cuando se agreguen o eliminen rutas.
+- `public/social-cover.png`: imagen para compartir en redes.
+
+Se conservan las rutas existentes y el texto de las páginas legales. Estas páginas no constituyen una revisión legal. El sitio nuevo no carga Meta Pixel ni Google Analytics. El formulario de contacto prepara un mensaje de WhatsApp; no envía mensajes ni almacena datos por su cuenta. Sin JavaScript, envía el campo de descripción a WhatsApp mediante GET.
+
+El inicio funciona sin JavaScript. El menú usa `details` y las preguntas frecuentes son nativas. El JavaScript mejora el cierre del menú, compone el mensaje de contacto y añade apariciones suaves y parallax de escritorio. El movimiento respeta `prefers-reduced-motion`; el parallax se detiene fuera de pantalla y no usa un bucle permanente. No hay fuentes remotas, splash, renderizado 3D ni animaciones que oculten contenido.
+
+La ilustración principal es una composición HTML/CSS, no una captura ni resultados atribuidos a un cliente. Las tarjetas de proyectos conservan los recursos y enlaces proporcionados por el portafolio anterior.

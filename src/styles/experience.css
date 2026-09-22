@@ -1,0 +1,84 @@
+/* Shared application shell: stays outside ScrollSmoother's transformed content. */
+html{color-scheme:light}html[data-theme=dark]{color-scheme:dark}
+.site-header{position:fixed;inset:0 0 auto;z-index:50;width:100%}
+#smooth-content{padding-top:90px;overflow:clip}
+#smooth-wrapper{width:100%}
+html[data-smooth=true]{scroll-behavior:auto}
+.header-inner{gap:18px}.brand{gap:11px;letter-spacing:-.8px;flex-shrink:0}
+.brand-emblem{position:relative;display:block;width:57px;height:57px;flex-shrink:0}
+.brand-emblem img{width:100%;height:100%;object-fit:contain}
+.logo-dark{display:none}html[data-theme=dark] .logo-dark{display:block}html[data-theme=dark] .logo-light{display:none}
+.brand-type{font-size:23px;line-height:1.15;display:block;font-weight:700}.brand-type small{display:block;font:9px/1.8 Arial,sans-serif;letter-spacing:.05em;color:var(--muted)}
+.brand-light{color:#b95522;font-weight:600}.brand-emblem-large{width:250px;height:250px}
+.about-brand{position:relative;z-index:1}.about-graphic:before{display:none}
+.desktop-nav{gap:21px;margin-left:auto;font-size:12px}.desktop-nav a{white-space:nowrap}
+.theme-toggle{width:42px;height:42px;display:grid;place-items:center;flex-shrink:0;padding:10px;border:1px solid var(--line);border-radius:50%;background:transparent;color:var(--ink);cursor:pointer}
+.theme-toggle:hover{background:var(--theme-hover,#e8e9e2)}.theme-toggle svg{width:21px;height:21px;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+.theme-sun{display:none}html[data-theme=dark] .theme-sun{display:block}html[data-theme=dark] .theme-moon{display:none}
+html:not([data-js=true]) .theme-toggle{display:none}
+.nav-cta{margin-left:0;padding:10px 14px;gap:15px}
+.whatsapp-fab{position:fixed;right:26px;bottom:calc(24px + env(safe-area-inset-bottom));z-index:60;display:grid;place-items:center;width:58px;height:58px;border-radius:50%;background:#167c47;color:#fff;border:1px solid #ffffff40;box-shadow:0 7px 25px #0003;transition:transform .25s,background .25s}
+.whatsapp-fab>svg{width:28px;height:28px}.whatsapp-fab:hover{transform:translateY(-4px);background:#11663a}
+.whatsapp-tooltip{position:absolute;right:70px;white-space:nowrap;background:var(--ink);color:var(--paper);border-radius:7px;padding:9px 14px;font-size:12px;opacity:0;visibility:hidden;transform:translateX(8px);transition:opacity .2s,transform .2s}
+.whatsapp-fab:hover .whatsapp-tooltip,.whatsapp-fab:focus-visible .whatsapp-tooltip{opacity:1;visibility:visible;transform:none}
+.process-timeline{max-width:900px;margin:0 auto 65px;position:relative}
+.process-timeline:before{content:'';position:absolute;left:28px;top:15px;bottom:70px;width:1px;background:var(--line)}
+.process-step{display:grid;grid-template-columns:58px 1fr;gap:30px;margin-bottom:30px;position:relative}
+.process-number{width:58px;height:58px;display:grid;place-items:center;border:1px solid var(--line);background:var(--paper);border-radius:50%;font:22px Georgia;color:var(--ink)}
+.process-step-card{border:1px solid var(--line);border-radius:12px;padding:32px;background:var(--card-bg,#fcfcf8)}
+.process-step-card h2{font-size:30px;margin-bottom:15px}.process-step-card p{font-size:15px;max-width:660px}
+.process-step-card .eyebrow{color:var(--accent-text,#a8441f);margin-bottom:12px}
+.process-tags{list-style:none;padding:0;display:flex;flex-wrap:wrap;gap:9px;margin:24px 0 0}
+.process-tags li{font-size:11px;border:1px solid var(--line);border-radius:30px;padding:6px 12px;color:var(--muted)}
+.note-panel .button{margin-top:22px}
+.benefits-section{border-top:1px solid var(--line)}.benefits-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:25px}
+.benefit-card{padding:28px 0;border-top:1px solid var(--line)}.benefit-card h3{margin-bottom:16px}.benefit-card p{font-size:14px;line-height:1.9}
+.testimonials-section{background:var(--section-bg,#eeefe8);border-block:1px solid var(--line)}
+.testimonials-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.testimonial-card{display:flex;flex-direction:column;padding:30px;border:1px solid var(--line);background:var(--card-bg,#fcfcf8);border-radius:10px}
+.quote-mark{font:60px/1 Georgia;color:var(--accent-text,#a8441f);height:50px}.testimonial-card blockquote{margin:0 0 24px;font-size:14px;line-height:1.9;color:var(--muted)}
+.review-stars{margin-top:auto;color:var(--accent-text,#a8441f);letter-spacing:4px;font-size:18px}.star-empty{opacity:.65}
+.review-author{display:flex;align-items:center;gap:13px;margin-top:22px;padding-top:22px;border-top:1px solid var(--line)}
+.review-author img{width:44px;height:44px;border-radius:50%;object-fit:cover;background:#fff}.review-author h3{font-size:16px;letter-spacing:-.02em;margin-bottom:5px}.review-author p{font-size:10px;line-height:1.7}
+/* Dark theme is authored for every surface, not a filter over the light design. */
+html[data-theme=dark]{--paper:#101824;--ink:#f0f4fa;--muted:#b4c0ce;--line:#304052;--orange:#ff974e;--green:#95c8b0;--theme-hover:#253447;--card-bg:#172332;--section-bg:#131f2d;--accent-text:#ffad70}
+html[data-theme=dark] body{background:#101824;color:#f0f4fa}
+html[data-theme=dark] .site-header{background:rgb(16 24 36 / 95%)}
+html[data-theme=dark] .brand-light{color:#ffad70}
+html[data-theme=dark] .desktop-nav a{color:#c0cad6}html[data-theme=dark] .desktop-nav a:hover,html[data-theme=dark] .desktop-nav a[aria-current]{color:#fff}
+html[data-theme=dark] .nav-cta{border-color:#465568}html[data-theme=dark] .nav-cta:hover{background:#263649}
+html[data-theme=dark] .muted{color:#a3b2c4}
+html[data-theme=dark] .eyebrow,html[data-theme=dark] .card-top .micro,html[data-theme=dark] .section-side,html[data-theme=dark] .art-caption{color:#b4c0ce}
+html[data-theme=dark] .hero-note div>span,html[data-theme=dark] .footer-top>div>a:not(.brand),html[data-theme=dark] .footer-top>div>span,html[data-theme=dark] .footer-bottom{color:#b4c0ce}
+html[data-theme=dark] .small-avatar{background:#243b39;border-color:#38514b;color:#d4e6cc}
+html[data-theme=dark] .availability>span{background:#a8d9b4;box-shadow:0 0 0 4px #1f3530}
+html[data-theme=dark] .button-dark{background:#ff974e;color:#18222e}html[data-theme=dark] .button-dark:hover{background:#ffb17a}
+html[data-theme=dark] .service-card,html[data-theme=dark] .contact-method{background:#172332}
+html[data-theme=dark] .service-icon{background:#26394a;color:#b7d8cd}
+html[data-theme=dark] .projects-section{background:#131f2d;border-color:#304052}
+html[data-theme=dark] .expertise-strip span,html[data-theme=dark] .expertise-strip p{color:#b4c0ce}
+html[data-theme=dark] .expertise-strip i{color:#ffad70}
+html[data-theme=dark] .about-graphic{background:#192738;border-color:#304052}
+html[data-theme=dark] .about-copy h2 em{color:#ffad70}
+html[data-theme=dark] .step-number,html[data-theme=dark] .step-number>span{color:#b4c0ce}
+html[data-theme=dark] .faq-list summary span{color:#ffad70}
+html[data-theme=dark] .brief-form,html[data-theme=dark] .note-panel,html[data-theme=dark] .detail-list{background:#192738;border-color:#304052}
+html[data-theme=dark] .brief-form input,html[data-theme=dark] .brief-form select,html[data-theme=dark] .brief-form textarea{background:#111d2a;color:#f0f4fa;border-color:#516174}
+html[data-theme=dark] input::placeholder,html[data-theme=dark] textarea::placeholder{color:#a4b3c5}
+html[data-theme=dark] .contact-banner{background:#d98e60;border-color:#dc9b74;color:#202a32}
+html[data-theme=dark] .contact-banner .eyebrow,html[data-theme=dark] .contact-banner p{color:#362a23}
+html[data-theme=dark] .contact-banner .button-dark{background:#182635;color:#fff}
+html[data-theme=dark] .contact-banner .banner-spark{color:#c27c53}
+html[data-theme=dark] .mock-window{color:#232b28;border-color:#45566a;box-shadow:0 30px 60px -20px #0009}
+html[data-theme=dark] .art-orbit{border-color:#31404f;background:radial-gradient(circle,#28392e,transparent 70%)}
+html[data-theme=dark] .art-grid{background-image:linear-gradient(#344656 1px,transparent 1px),linear-gradient(90deg,#344656 1px,transparent 1px)}
+html[data-theme=dark] .floating-label{background:#1e2d3e;border-color:#415266;color:#f0f4fa}
+html[data-theme=dark] .label-bottom small{color:#b4c0ce}
+html[data-theme=dark] .code-icon{background:#483323;color:#ffbd8b}
+html[data-theme=dark] .project-arrow{color:#24302b}
+html[data-theme=dark] .mobile-menu nav{background:#101824;border-color:#304052}
+html[data-theme=dark] :focus-visible{outline-color:#ffb17a}
+@media(max-width:1150px){.desktop-nav{gap:14px;font-size:11px}.brand-type{font-size:21px}.brand-emblem{width:49px;height:49px}.brand-emblem-large{width:250px;height:250px}.header-inner{gap:12px}.nav-cta{padding:9px 12px;font-size:12px}.theme-toggle{width:38px;height:38px}}
+@media(max-width:960px){.desktop-nav{display:none}.theme-toggle{margin-left:auto}.mobile-menu{display:block}.mobile-menu summary{list-style:none;font-size:20px;padding:8px}.mobile-menu summary::-webkit-details-marker{display:none}.mobile-menu summary>span{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%)}.mobile-menu nav{position:absolute;left:0;right:0;top:90px;background:var(--paper);border-bottom:1px solid var(--line);box-shadow:0 12px 20px #20292310;padding:15px 25px;display:flex;flex-direction:column;gap:5px;max-height:calc(100dvh - 90px);overflow:auto}.mobile-menu nav a{padding:11px}.testimonials-grid{gap:14px}.testimonial-card{padding:22px}}
+@media(max-width:760px){#smooth-content{padding-top:74px}.header-inner{gap:10px}.brand{gap:7px}.brand-type{font-size:19px}.brand-type small{font-size:7px}.brand-emblem{width:44px;height:44px}.brand-emblem-large{width:230px;height:230px}.theme-toggle{width:38px;height:38px}.nav-cta{display:none}.mobile-menu nav{top:74px;max-height:calc(100dvh - 74px)}.mobile-menu summary{padding:8px 4px}.whatsapp-fab{right:18px;bottom:calc(18px + env(safe-area-inset-bottom));width:52px;height:52px}.whatsapp-fab>svg{width:25px;height:25px}.whatsapp-tooltip{display:none}.footer-bottom{padding-bottom:92px}.process-step{grid-template-columns:42px 1fr;gap:15px}.process-number{width:42px;height:42px;font-size:17px}.process-timeline:before{left:20px}.process-step-card{padding:23px 20px}.process-step-card h2{font-size:25px}.process-step-card p{font-size:14px}.process-tags{gap:6px}.process-tags li{font-size:10px;padding:5px 9px}.testimonials-grid{grid-template-columns:1fr;gap:20px}.testimonial-card{padding:28px}.benefits-grid{grid-template-columns:repeat(2,1fr);gap:20px}.benefit-card h3{font-size:22px}.benefit-card p{font-size:13px}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto!important}::view-transition-group(*),::view-transition-old(*),::view-transition-new(*){animation:none!important}.whatsapp-fab{transition:none}}

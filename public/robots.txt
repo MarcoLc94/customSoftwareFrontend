@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://marcodev.com.mx/sitemap.xml

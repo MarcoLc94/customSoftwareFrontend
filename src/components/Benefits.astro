@@ -1,0 +1,9 @@
+---
+const items = [
+ ['01', 'A tu medida', 'Software diseñado exactamente para tus procesos únicos, sin concesiones ni funciones innecesarias.'],
+ ['02', 'Eficiencia', 'Automatiza tareas rutinarias, reduce errores humanos y recupera horas valiosas de trabajo.'],
+ ['03', 'Tecnología moderna', 'Stack rápido, seguro y actualizado para estar un paso adelante de tu competencia.'],
+ ['04', 'Escalabilidad', 'Sistemas construidos para crecer contigo sin requerir reconstrucciones costosas en el futuro.']
+];
+---
+<section class="section container benefits-section" id="beneficios"><div class="section-heading"><div><span class="eyebrow">¿POR QUÉ MARCO DEV?</span><h2>Soluciones que<br/><span class="muted">crecen contigo.</span></h2></div><p>Cada decisión de diseño y código está orientada a hacer crecer tu negocio.</p></div><div class="benefits-grid">{items.map(([number,title,text])=><article class="benefit-card"><span class="eyebrow">{number} /</span><h3>{title}</h3><p>{text}</p></article>)}</div></section>

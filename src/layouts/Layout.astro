@@ -1,0 +1,64 @@
+---
+import '../styles/global.css';
+import '../styles/experience.css';
+import { ClientRouter } from 'astro:transitions';
+import BrandLogo from '../components/BrandLogo.astro';
+import ThemeToggle from '../components/ThemeToggle.astro';
+import WhatsApp from '../components/WhatsApp.astro';
+interface Props { title?: string; description?: string; noindex?: boolean }
+const { title = 'Desarrollo web y software a medida en Monterrey', description = 'Soy Marco, desarrollador de páginas web, software a medida e inventarios. Trabaja directamente conmigo desde la idea hasta el lanzamiento. Monterrey, México.', noindex = false } = Astro.props;
+const path = Astro.url.pathname.replace(/\/$/, '') || '/';
+const canonical = new URL(path, Astro.site);
+const nav = [['/', 'Inicio'], ['/servicios', 'Servicios'], ['/#proyectos', 'Proyectos'], ['/proceso', 'Proceso'], ['/contacto', 'Contacto'], ['/aviso-de-privacidad', 'Privacidad']];
+---
+<!doctype html>
+<html lang="es-MX" data-theme="dark" transition:animate="none">
+<head>
+<meta charset="UTF-8"/>
+<ClientRouter fallback="swap"/>
+<script is:inline>
+(() => {
+  const savedTheme = () => { try { const value = localStorage.getItem('theme'); return value === 'light' || value === 'dark' ? value : 'dark'; } catch { return 'dark'; } };
+  const applyTheme = (theme, target = document) => {
+    target.documentElement.dataset.theme = theme;
+    target.documentElement.dataset.js = 'true';
+    target.querySelector('meta[name="theme-color"]')?.setAttribute('content', theme === 'dark' ? '#101824' : '#f8f7f3');
+    target.querySelectorAll('.theme-toggle').forEach(button => {
+      button.setAttribute('aria-label', `Cambiar a modo ${theme === 'dark' ? 'claro' : 'oscuro'}`);
+      button.setAttribute('aria-pressed', String(theme === 'dark'));
+    });
+  };
+  applyTheme(savedTheme());
+  document.addEventListener('astro:before-swap', event => applyTheme(document.documentElement.dataset.theme, event.newDocument));
+  document.addEventListener('astro:page-load', () => applyTheme(document.documentElement.dataset.theme));
+  document.addEventListener('click', event => {
+    if (!(event.target instanceof Element) || !event.target.closest('.theme-toggle')) return;
+    const theme = document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark';
+    applyTheme(theme);
+    try { localStorage.setItem('theme', theme); } catch {}
+  });
+  window.addEventListener('storage', event => { if (event.key === 'theme') applyTheme(savedTheme()); });
+})();
+</script><meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>{title} | Marco Dev</title><meta name="description" content={description}/><link rel="canonical" href={canonical}/>
+{noindex && <meta name="robots" content="noindex, follow"/>}
+<meta name="theme-color" content="#f8f7f3"/>
+<link rel="icon" href="/favicon.ico" sizes="any"/><link rel="apple-touch-icon" href="/apple-touch-icon.png"/>
+<meta name="facebook-domain-verification" content="wbbqc0q30jonl31mjkoxplgfpxe4mi"/><meta name="facebook-domain-verification" content="z1sej6yqj42bv5wdu9mtggemnd2dze"/>
+<meta property="og:type" content="website"/><meta property="og:site_name" content="Marco Dev"/><meta property="og:title" content={`${title} | Marco Dev`}/><meta property="og:description" content={description}/><meta property="og:url" content={canonical}/><meta property="og:locale" content="es_MX"/><meta property="og:image" content="https://marcodev.com.mx/social-cover.png"/><meta property="og:image:width" content="1200"/><meta property="og:image:height" content="630"/><meta name="twitter:card" content="summary_large_image"/><meta name="twitter:title" content={`${title} | Marco Dev`}/><meta name="twitter:description" content={description}/><meta name="twitter:image" content="https://marcodev.com.mx/social-cover.png"/>
+<script type="application/ld+json" set:html={JSON.stringify({'@context':'https://schema.org','@type':'ProfessionalService',name:'Marco Dev',url:'https://marcodev.com.mx',telephone:'+528118474519',email:'mlop.dev@outlook.com',address:{'@type':'PostalAddress',addressLocality:'Guadalupe',addressRegion:'Nuevo León',addressCountry:'MX'},areaServed:'México',description})}/>
+</head>
+<body>
+<a class="skip" href="#contenido">Saltar al contenido</a>
+<header class="site-header" transition:name="navigation" transition:animate="none"><div class="container header-inner">
+<a class="brand" href="/" title="Ir al inicio"><BrandLogo/><span class="brand-type">Marco <span class="brand-light">Dev</span><small>Soluciones web &amp; móvil</small></span></a>
+<nav class="desktop-nav" aria-label="Navegación principal">{nav.map(([href,label])=><a href={href} aria-current={href===path?'page':undefined}>{label}</a>)}</nav>
+<ThemeToggle/><a class="nav-cta" href="/contacto">Hablemos <span aria-hidden="true"><svg class="arrow" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 19 19 5M5 5h14v14" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a>
+<details class="mobile-menu"><summary aria-label="Abrir menú de navegación"><span>Menú</span> ☰</summary><nav aria-label="Navegación móvil">{nav.map(([href,label])=><a href={href}>{label}</a>)}<a href="/contacto">Contacto <svg class="arrow" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 19 19 5M5 5h14v14" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a></nav></details>
+</div></header>
+<div id="smooth-wrapper"><div id="smooth-content"><main id="contenido" transition:animate="none"><slot/></main>
+<footer class="site-footer"><div class="container footer-top"><div><a class="brand" href="/"><BrandLogo loading="lazy"/><span class="brand-type">Marco <span class="brand-light">Dev</span><small>Soluciones web &amp; móvil</small></span></a><p>Buenas ideas. Software bien hecho.<br/>Desde Nuevo León, para tu negocio.</p></div><div><h2>Exploremos</h2><a href="/servicios">Servicios</a><a href="/#proyectos">Proyectos</a><a href="/proceso">Cómo trabajo</a></div><div><h2>Conectemos</h2><a href="mailto:mlop.dev@outlook.com">mlop.dev@outlook.com <svg class="arrow" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 19 19 5M5 5h14v14" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a><a href="https://wa.me/528118474519">+52 81 1847 4519 <svg class="arrow" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 19 19 5M5 5h14v14" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a><span>Guadalupe, Nuevo León, México</span></div></div><div class="container footer-bottom"><span>© {new Date().getFullYear()} Marco Dev</span><div><a href="/aviso-de-privacidad">Privacidad</a><a href="/terminos-de-servicio">Condiciones del servicio</a><a href="/eliminacion-de-datos">Eliminación de datos</a></div></div></footer></div></div><WhatsApp/>
+<script>
+ import '../scripts/app';
+</script>
+</body></html>

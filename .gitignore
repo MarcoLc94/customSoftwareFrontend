@@ -128,3 +128,6 @@ dist-ssr
 *.sw?
 node_modules
 eslint.config.js
+
+# Astro generated types
+.astro/

@@ -1,0 +1,8 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import CTA from '../../components/CTA.astro';
+import { services, whatsapp } from '../../data';
+export function getStaticPaths() { return services.map(service=>({params:{slug:service.slug},props:{service}})); }
+const { service } = Astro.props;
+---
+<Layout title={`${service.short} en Monterrey`} description={service.text}><div class="container"><header class="page-intro"><a class="eyebrow" href="/servicios">← TODOS LOS SERVICIOS</a><h1>{service.name}</h1><p>{service.text}</p></header><div class="detail-layout"><div><h2>Una solución que tenga sentido para ti.</h2><p>{service.for}</p><p>Empezamos por entender tu operación. Definimos las funciones, los entregables y los tiempos en una propuesta personalizada antes de construir.</p><a class="button button-dark" href={whatsapp}>Platiquemos de tu proyecto <svg class="arrow" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 19 19 5M5 5h14v14" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div><section class="detail-list"><h2>Podemos trabajar en</h2><ul>{service.includes.map(item=><li>{item}</li>)}</ul><p>El alcance final se acuerda según las necesidades de tu negocio.</p></section></div></div><CTA/></Layout>

@@ -1,0 +1,46 @@
+---
+import Layout from '../layouts/Layout.astro';
+import CTA from '../components/CTA.astro';
+import { whatsapp } from '../data';
+const steps = [
+  {
+    num: "01",
+    title: "Consulta Inicial",
+    duration: "Día 1",
+    desc: "Me cuentas tu proyecto, objetivos y presupuesto. Agenda una llamada gratuita sin compromiso para entender a fondo lo que necesitas.",
+    details: ["Llamada de 30–60 minutos", "Sin costo ni compromiso", "Definición de requerimientos"],
+  },
+  {
+    num: "02",
+    title: "Análisis y Propuesta",
+    duration: "Días 2–4",
+    desc: "Estudio tu industria, procesos y competencia. Te entrego una propuesta detallada con alcance, tiempos y precio fijo. Sin sorpresas.",
+    details: ["Propuesta con precio fijo", "Cronograma detallado", "Revisión de alternativas"],
+  },
+  {
+    num: "03",
+    title: "Diseño y Prototipo",
+    duration: "Semana 1",
+    desc: "Diseñamos la interfaz visual y la experiencia de usuario. Apruebas cada pantalla antes de escribir una línea de código.",
+    details: ["Wireframes interactivos", "Diseño responsivo", "Revisiones incluidas"],
+  },
+  {
+    num: "04",
+    title: "Desarrollo Ágil",
+    duration: "Semanas 2–N",
+    desc: "Construyo tu software en iteraciones cortas. Recibes demos regulares y puedes solicitar ajustes en cada etapa.",
+    details: ["Demos semanales", "Feedback constante", "Código limpio y documentado"],
+  },
+  {
+    num: "05",
+    title: "Entrega y Soporte",
+    duration: "Final",
+    desc: "Lanzamiento, configuración en producción, capacitación para tu equipo y soporte post-entrega. Tu inversión protegida.",
+    details: ["Deploy y configuración", "Capacitación incluida", "Soporte continuo"],
+  },
+];
+---
+<Layout title="Nuestro proceso: de la idea al lanzamiento" description="Conoce las cinco etapas de Marco Dev: consulta, análisis, diseño, desarrollo y entrega. Comunicación directa y avances que puedes revisar.">
+<div class="container process-page"><header class="page-intro"><span class="eyebrow">METODOLOGÍA / 5 ETAPAS</span><h1>De tu primera idea<br/><span class="muted">al último detalle.</span></h1><p>Un método ágil, transparente y orientado a resultados. De la idea al producto en cinco etapas claras.</p></header>
+<div class="process-timeline">{steps.map(step => <article class="process-step"><span class="process-number" aria-hidden="true">{step.num}</span><div class="process-step-card"><span class="eyebrow">{step.duration}</span><h2>{step.title}</h2><p>{step.desc}</p><ul class="process-tags">{step.details.map(detail=><li>{detail}</li>)}</ul></div></article>)}</div>
+<section class="note-panel"><h2>¿Listo para comenzar?</h2><p>El primer paso es una llamada gratuita, sin compromiso. Acordamos alcance, tiempos y presupuesto antes de iniciar.</p><a class="button button-dark" href={whatsapp}>Agendar llamada gratuita <span aria-hidden="true">→</span></a></section></div><CTA/></Layout>

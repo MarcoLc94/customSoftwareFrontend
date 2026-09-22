@@ -1,0 +1,11 @@
+---
+import { Image } from 'astro:assets';
+import dark from '../assets/logo-dark.png';
+import light from '../assets/logo-light.png';
+interface Props { large?: boolean; loading?: 'eager' | 'lazy' }
+const { large = false, loading = 'eager' } = Astro.props;
+---
+<span class:list={['brand-emblem', { 'brand-emblem-large': large }]} aria-hidden="true">
+<Image src={dark} width={large ? 320 : 128} format="webp" quality={85} alt="" class="logo-dark" loading={loading}/>
+<Image src={light} width={large ? 320 : 128} format="webp" quality={85} alt="" class="logo-light" loading={loading}/>
+</span>

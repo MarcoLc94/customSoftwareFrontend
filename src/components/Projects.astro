@@ -1,0 +1,12 @@
+---
+import { Image } from 'astro:assets';
+import auto from '../assets/autocerrajeria.jpg';
+import gruas from '../assets/losreyes.jpg';
+import inventory from '../assets/new-logo.jpeg';
+const projects = [
+ {image:auto, name:'Autocerrajería',category:'DESARROLLO WEB',description:'Una presencia digital para acercar los servicios de cerrajería automotriz a sus clientes.',href:'https://autocerrajeria.com.mx/home',label:'Visitar sitio',color:'orange'},
+ {image:gruas,name:'Grúas Los Reyes',category:'DESARROLLO WEB',description:'Servicios de grúas con una presentación clara y acceso directo al contacto.',href:'https://losreyesgruas.com/',label:'Visitar sitio',color:'blue'},
+ {image:inventory,name:'Software de inventarios',category:'APLICACIÓN WEB',description:'Una herramienta para organizar productos, existencias y la operación del negocio.',href:'https://wa.me/528118474519?text=Hola%20Marco%2C%20me%20interesa%20una%20demo%20del%20software%20de%20inventarios.',label:'Solicitar demo',color:'green'}
+];
+---
+<div class="project-grid">{projects.map(p=><article class="project-card"><a class={`project-visual ${p.color}`} href={p.href} target="_blank" rel="noopener noreferrer" aria-label={`${p.label}: ${p.name} (abre otra pestaña)`}><div class="project-browser"><div class="browser-bar"><i></i><i></i><i></i><span>{p.name}</span></div><Image src={p.image} alt={`Imagen del proyecto ${p.name}`} widths={[320,480,640,800]} sizes="(max-width: 380px) calc(100vw - 82px), (max-width: 760px) calc(100vw - 120px), (max-width: 1100px) calc((100vw - 116px) / 3 - 30px), (max-width: 1296px) calc((100vw - 148px) / 3 - 44px), 339px" width={600} format="webp" quality={65} loading="lazy"/></div><span class="project-arrow" aria-hidden="true"><svg class="arrow" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 19 19 5M5 5h14v14" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a><div class="project-info"><span class="eyebrow">{p.category}</span><h3><a href={p.href} target="_blank" rel="noopener noreferrer">{p.name} <span aria-hidden="true"><svg class="arrow" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 19 19 5M5 5h14v14" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a></h3><p>{p.description}</p></div></article>)}</div>
