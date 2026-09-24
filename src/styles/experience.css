@@ -95,3 +95,5 @@ html[data-theme=dark] :focus-visible{outline-color:#ffb17a}
 .contact-banner:after{content:'';position:absolute;right:-80px;top:-120px;width:360px;height:360px;border:1px solid #ffffff40;border-radius:50%;box-shadow:0 0 0 45px #ffffff0a,0 0 0 90px #ffffff08;pointer-events:none}
 :where(section,[id]){scroll-margin-top:110px}
 @media(prefers-reduced-motion:reduce){.hero-shader{display:none}.desktop-nav a:after,.service-card,.testimonial-card{transition:none}}
+
+@media(min-width:761px){.project-grid-portfolio{grid-template-columns:repeat(2,minmax(0,1fr));gap:40px 28px}.project-grid-portfolio .project-visual{min-height:300px}.project-grid-portfolio .project-browser img{height:auto;aspect-ratio:3/2;object-fit:cover;object-position:top}}
