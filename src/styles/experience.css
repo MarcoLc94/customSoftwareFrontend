@@ -82,3 +82,16 @@ html[data-theme=dark] :focus-visible{outline-color:#ffb17a}
 @media(max-width:960px){.desktop-nav{display:none}.theme-toggle{margin-left:auto}.mobile-menu{display:block}.mobile-menu summary{list-style:none;font-size:20px;padding:8px}.mobile-menu summary::-webkit-details-marker{display:none}.mobile-menu summary>span{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%)}.mobile-menu nav{position:absolute;left:0;right:0;top:90px;background:var(--paper);border-bottom:1px solid var(--line);box-shadow:0 12px 20px #20292310;padding:15px 25px;display:flex;flex-direction:column;gap:5px;max-height:calc(100dvh - 90px);overflow:auto}.mobile-menu nav a{padding:11px}.testimonials-grid{gap:14px}.testimonial-card{padding:22px}}
 @media(max-width:760px){#smooth-content{padding-top:74px}.header-inner{gap:10px}.brand{gap:7px}.brand-type{font-size:19px}.brand-type small{font-size:7px}.brand-emblem{width:44px;height:44px}.brand-emblem-large{width:230px;height:230px}.theme-toggle{width:38px;height:38px}.nav-cta{display:none}.mobile-menu nav{top:74px;max-height:calc(100dvh - 74px)}.mobile-menu summary{padding:8px 4px}.whatsapp-fab{right:18px;bottom:calc(18px + env(safe-area-inset-bottom));width:52px;height:52px}.whatsapp-fab>svg{width:25px;height:25px}.whatsapp-tooltip{display:none}.footer-bottom{padding-bottom:92px}.process-step{grid-template-columns:42px 1fr;gap:15px}.process-number{width:42px;height:42px;font-size:17px}.process-timeline:before{left:20px}.process-step-card{padding:23px 20px}.process-step-card h2{font-size:25px}.process-step-card p{font-size:14px}.process-tags{gap:6px}.process-tags li{font-size:10px;padding:5px 9px}.testimonials-grid{grid-template-columns:1fr;gap:20px}.testimonial-card{padding:28px}.benefits-grid{grid-template-columns:repeat(2,1fr);gap:20px}.benefit-card h3{font-size:22px}.benefit-card p{font-size:13px}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto!important}::view-transition-group(*),::view-transition-old(*),::view-transition-new(*){animation:none!important}.whatsapp-fab{transition:none}}
+
+/* Light ribbons sit behind the product illustration, never over copy. */
+.hero-shader{position:absolute;inset:-8%;width:116%;height:116%;z-index:-1;pointer-events:none}
+.art-orbit{background:transparent!important}.art-grid{opacity:.55}
+.mock-window{border-radius:16px}.floating-label{border-radius:12px;backdrop-filter:blur(12px)}
+.service-card,.testimonial-card,.process-step-card{border-radius:16px}
+.service-card,.testimonial-card{transition:border-color .25s,box-shadow .25s}
+.service-card:hover,.testimonial-card:hover{border-color:var(--orange);box-shadow:0 16px 40px -24px #0005}
+.desktop-nav a{position:relative}.desktop-nav a:after{content:'';position:absolute;left:0;right:0;bottom:-8px;height:2px;background:var(--orange);transform:scaleX(0);transform-origin:left;transition:transform .25s}
+.desktop-nav a:hover:after,.desktop-nav a[aria-current]:after{transform:scaleX(1)}
+.contact-banner:after{content:'';position:absolute;right:-80px;top:-120px;width:360px;height:360px;border:1px solid #ffffff40;border-radius:50%;box-shadow:0 0 0 45px #ffffff0a,0 0 0 90px #ffffff08;pointer-events:none}
+:where(section,[id]){scroll-margin-top:110px}
+@media(prefers-reduced-motion:reduce){.hero-shader{display:none}.desktop-nav a:after,.service-card,.testimonial-card{transition:none}}
